@@ -20,12 +20,6 @@ export const useParticipants = () => {
       console.log("Participant disconnected:", participant.identity)
     }
     if (room) {
-      // Log any Participants already connected to the Room
-      // room.participants.forEach((participant) => {
-      //   console.log(
-      //     `Participant "${participant.identity}" is connected to the Room`
-      //   )
-      // })
       room.on("participantConnected", participantConnected)
       room.on("participantDisconnected", participantDisconnected)
     }

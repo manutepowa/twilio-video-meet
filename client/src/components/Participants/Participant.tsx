@@ -33,12 +33,6 @@ export const Participant = ({ participant, isLocalParticipant }: Props) => {
   const vTrack = useTrack(vPub)
   // const aTrack = useTrack(aPub)
 
-  // console.log({
-  //   publication,
-  //   identity: participant.identity,
-  //   isLocalParticipant,
-  // })
-
   return (
     <div className="border-slate-100">
       <ParticipantTrack track={vTrack} />

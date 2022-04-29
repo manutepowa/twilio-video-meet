@@ -9,16 +9,18 @@ function Room() {
   const localParticipant = room.localParticipant
 
   return (
-    <div className="bg-primary h-screen grid grid-cols-3 gap-4 p-4">
-      <Participant participant={localParticipant} isLocalParticipant={true} />
-      {participants &&
-        participants.map((participant, i) => (
-          <Participant
-            key={i}
-            participant={participant}
-            isLocalParticipant={false}
-          />
-        ))}
+    <div className="bg-primary h-screen">
+      <div className="grid grid-cols-3 gap-4 p-4">
+        <Participant participant={localParticipant} isLocalParticipant={true} />
+        {participants &&
+          participants.map((participant, i) => (
+            <Participant
+              key={i}
+              participant={participant}
+              isLocalParticipant={false}
+            />
+          ))}
+      </div>
     </div>
   )
 }
