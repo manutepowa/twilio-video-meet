@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "standard",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "no-use-before-define": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "parser": "flow",
+        "indent": [
+          "error",
+          2
+        ],
+        "singleQuote": false,
+        "semi": false,
+        "endOfLine": "auto",
+        "useTabs": false
+      },
+      {
+        "usePrettierrc": false
+      }
+    ]
+  }
+}
