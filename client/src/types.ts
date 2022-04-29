@@ -15,6 +15,7 @@ export interface IContext {
   isOnRoom?: boolean;
   room: Room | undefined;
   loadingRoom: boolean;
+  setIsOnRoom?: Dispatch<SetStateAction<boolean>>;
 }
 
 export type PublicationType = LocalTrackPublication | RemoteTrackPublication

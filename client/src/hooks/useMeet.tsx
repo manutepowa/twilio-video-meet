@@ -26,5 +26,6 @@ export const useMeet = () => {
     isOnRoom,
     room,
     loadingRoom,
+    setIsOnRoom,
   }
 }

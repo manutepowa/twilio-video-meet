@@ -6,12 +6,17 @@ import { useParticipants } from "../../hooks/useParticipants"
 function Room() {
   const participants = useParticipants()
   const { room } = useContext(MeetContext)
-  const localParticipant = room.localParticipant
+  const localParticipant = room?.localParticipant
 
   return (
     <div className="bg-primary h-screen">
       <div className="grid grid-cols-3 gap-4 p-4">
-        <Participant participant={localParticipant} isLocalParticipant={true} />
+        {localParticipant && (
+          <Participant
+            participant={localParticipant}
+            isLocalParticipant={true}
+          />
+        )}
         {participants &&
           participants.map((participant, i) => (
             <Participant
@@ -20,6 +25,11 @@ function Room() {
               isLocalParticipant={false}
             />
           ))}
+      </div>
+      <div>
+        <button type="button" onClick={() => room?.disconnect()}>
+          Disconnect
+        </button>
       </div>
     </div>
   )
