@@ -1,13 +1,17 @@
 import { FC, FormEvent, useContext, useState } from "react"
 import MeetContext from "../../context/MeetContext"
+import { LoadingRoom } from "./LoadingRoom"
 
 export const NickForm: FC = () => {
-  const { nickname, setNickname, enterToRoom } = useContext(MeetContext)
+  const { nickname, setNickname, enterToRoom, loadingRoom } =
+    useContext(MeetContext)
   // const [q, setQ] = useState<string>("")
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // setNickname?.(q)
+    if (nickname === "") {
+      return
+    }
     enterToRoom?.()
   }
 
@@ -18,7 +22,7 @@ export const NickForm: FC = () => {
           onSubmit={handleSubmit}
           className="flex flex-col items-center py-8 mx-8"
         >
-          <label className="text-2xl font-bold">Nombre de usuario</label>
+          <label className="text-2xl font-bold">Enter username</label>
           <input
             type="text"
             name="nickname"
@@ -26,12 +30,16 @@ export const NickForm: FC = () => {
             value={nickname}
             onChange={(event) => setNickname?.(event.target.value)}
           ></input>
-          <button
-            type="submit"
-            className="w-full py-2 rounded-sm bg-sky-500 hover:bg-sky-400"
-          >
-            Entrar a la reunión
-          </button>
+          {loadingRoom ? (
+            <LoadingRoom />
+          ) : (
+            <button
+              type="submit"
+              className="w-full py-2 my-4 rounded-sm bg-sky-500 hover:bg-sky-400"
+            >
+              Access room
+            </button>
+          )}
         </form>
       </div>
     </div>

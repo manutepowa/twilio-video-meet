@@ -12,6 +12,3 @@ form *{
   @apply h-screen w-screen object-cover
 }
 
-#room-video{
-  border: 1px solid red;
-}

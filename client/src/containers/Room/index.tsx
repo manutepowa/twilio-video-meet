@@ -9,7 +9,7 @@ function Room() {
   const localParticipant = room.localParticipant
 
   return (
-    <div className="bg-primary h-screen flex flex-row">
+    <div className="bg-primary h-screen grid grid-cols-3 gap-4 p-4">
       <Participant participant={localParticipant} isLocalParticipant={true} />
       {participants &&
         participants.map((participant, i) => (

@@ -5,14 +5,20 @@ export type TrackProps = {
   track: VideoTrackType,
 }
 export const ParticipantTrack = ({ track }: TrackProps) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    if (track && ref?.current !== null) {
+    const el = ref?.current
+    if (track && el !== null) {
       console.log("track", track)
-      ref.current && ref.current.appendChild(track.attach())
+      track.attach(el)
+      // ref.current && ref.current.appendChild(track.attach())
+      return () => {
+        track.detach(el)
+        el.srcObject = null
+      }
     }
   }, [track])
 
-  return <div className="room-video" ref={ref}></div>
+  return <video className="w-full" ref={ref}></video>
 }

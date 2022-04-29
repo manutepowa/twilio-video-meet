@@ -40,12 +40,12 @@ export const Participant = ({ participant, isLocalParticipant }: Props) => {
   // })
 
   return (
-    <div className="border-slate-100 p-4">
+    <div className="border-slate-100">
       <ParticipantTrack track={vTrack} />
-      <h2 className="mx-auto text-center py-4">
+      <p className="text-center p-2 bg-sky-500 uppercase text-sm font-bold">
         {participant.identity}
         {isLocalParticipant && " (you)"}
-      </h2>
+      </p>
     </div>
   )
 }

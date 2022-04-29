@@ -13,7 +13,8 @@ export interface IContext {
   setRoomName?: Dispatch<SetStateAction<string>>;
   enterToRoom?: () => void;
   isOnRoom?: boolean;
-  room: Room;
+  room: Room | undefined;
+  loadingRoom: boolean;
 }
 
 export type PublicationType = LocalTrackPublication | RemoteTrackPublication

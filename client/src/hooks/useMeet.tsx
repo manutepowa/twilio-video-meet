@@ -7,12 +7,15 @@ export const useMeet = () => {
   const [roomName, setRoomName] = useState<string>("")
   const [room, setRoom] = useState<Video.Room>()
   const [isOnRoom, setIsOnRoom] = useState<boolean>(false)
+  const [loadingRoom, setLoadingRoom] = useState<boolean>(false)
 
   const enterToRoom = async () => {
+    setLoadingRoom(true)
     const token = await getMeetToken(nickname, roomName)
     const connection = await Video.connect(token)
     setRoom(connection)
     setIsOnRoom(true)
+    setLoadingRoom(false)
   }
 
   return {
@@ -22,5 +25,6 @@ export const useMeet = () => {
     enterToRoom,
     isOnRoom,
     room,
+    loadingRoom,
   }
 }
