@@ -7,12 +7,12 @@ import MeetContext from "../context/MeetContext"
 
 function Meet() {
   const [match, params] = useRoute("/:roomName")
-  const { setRoom, isOnRoom } = useContext(MeetContext)
+  const { setRoomName, isOnRoom } = useContext(MeetContext)
   const roomName = params?.roomName ?? ""
 
   useEffect(() => {
     if (roomName) {
-      setRoom?.(roomName)
+      setRoomName?.(roomName)
     }
   }, [roomName])
 

@@ -10,7 +10,7 @@ function UserVideo() {
       ref.current && ref.current.appendChild(track.attach())
     }
     if (ref?.current !== null) {
-      // addLocalTrack()
+      addLocalTrack()
     }
   }, [])
   return (
