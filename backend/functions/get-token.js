@@ -1,7 +1,7 @@
 const twilio = require('twilio');
 
 const response = new Twilio.Response();
-response.appendHeader('Access-Control-Allow-Origin', '*');
+response.appendHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 response.appendHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
 response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -15,6 +15,7 @@ exports.handler = async function(context, event, callback) {
   })
 
   accessToken.addGrant(grant)
+  
   response.setBody({
     token: accessToken.toJwt()
   })
