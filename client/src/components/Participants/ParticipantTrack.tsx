@@ -1,10 +1,6 @@
 import { useEffect, useRef } from "react"
-import { VideoTrackType } from "../../types"
 
-export type TrackProps = {
-  track: VideoTrackType,
-}
-export const ParticipantTrack = ({ track }: TrackProps) => {
+export const ParticipantTrack = ({ track }: any) => {
   const ref = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {

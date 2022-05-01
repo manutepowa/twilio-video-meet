@@ -26,13 +26,13 @@ export const useParticipants = () => {
 
       room.on("participantConnected", participantConnected)
       room.on("participantDisconnected", participantDisconnected)
-      room.on("disconnected", (room) => {
-        room.localParticipant.tracks.forEach((publication) => {
-          const attachedElements = publication.track.detach()
-          attachedElements.forEach((element) => element.remove())
-        })
-        setIsOnRoom?.(false)
-      })
+      // room.on("disconnected", (room) => {
+      //   room.localParticipant.tracks.forEach((publication) => {
+      //     const attachedElements = publication.track.detach()
+      //     attachedElements.forEach((element: any) => element.remove())
+      //   })
+      //   setIsOnRoom?.(false)
+      // })
     }
   }, [room])
 

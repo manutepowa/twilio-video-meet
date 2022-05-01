@@ -13,11 +13,15 @@ export interface IContext {
   setRoomName?: Dispatch<SetStateAction<string>>;
   enterToRoom?: () => void;
   isOnRoom?: boolean;
-  room: Room | undefined;
-  loadingRoom: boolean;
+  room?: Room | undefined;
+  loadingRoom?: boolean;
   setIsOnRoom?: Dispatch<SetStateAction<boolean>>;
 }
 
 export type PublicationType = LocalTrackPublication | RemoteTrackPublication
 
-export type VideoTrackType = LocalVideoTrack | RemoteVideoTrack
+export type VideoTrackType =
+  | LocalVideoTrack
+  | RemoteVideoTrack
+  | undefined
+  | null
