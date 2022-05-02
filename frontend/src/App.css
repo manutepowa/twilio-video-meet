@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  @apply text-gray-100;
+}
+form *{
+  margin: 12px auto;
+}
+#local-video video{
+  @apply h-screen w-screen object-cover
+}
+
