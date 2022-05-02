@@ -1,7 +1,7 @@
 const twilio = require('twilio');
 
 const response = new Twilio.Response();
-response.appendHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+response.appendHeader('Access-Control-Allow-Origin', 'https://twilio-video-meet.vercel.app');
 response.appendHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
 response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
 response.appendHeader('Content-Type', 'application/json');
