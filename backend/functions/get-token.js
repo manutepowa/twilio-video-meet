@@ -1,8 +1,10 @@
 const twilio = require('twilio');
 
 const response = new Twilio.Response();
+response.appendHeader('Access-Control-Allow-Origin', 'https://twilio-video-meet.pages.dev');
 response.appendHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
 response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
+response.appendHeader('Content-Type', 'application/json');
 
 exports.handler = async function(context, event, callback) {
   const { room, username } = event
@@ -14,9 +16,7 @@ exports.handler = async function(context, event, callback) {
   })
 
   accessToken.addGrant(grant)
-  
-  response.appendHeader('Content-Type', 'application/json');
-  response.appendHeader('Access-Control-Allow-Origin', context.ALLOW_ORIGIN);
+
   response.setBody({
     token: accessToken.toJwt()
   })
