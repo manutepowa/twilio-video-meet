@@ -12,3 +12,10 @@ form *{
   @apply h-screen w-screen object-cover
 }
 
+.action-buttons{
+  @apply flex;
+}
+
+.action-buttons button{
+  @apply p-4 hover:bg-gray-900 rounded-md;
+}

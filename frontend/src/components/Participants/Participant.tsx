@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Participant as P } from "twilio-video"
 import { usePublication } from "../../hooks/usePublication"
 import { PublicationType } from "../../types"
+import { ParticipantAudioTrack } from "./ParticipantAudioTrack"
 import { ParticipantTrack } from "./ParticipantTrack"
 
 type Props = {
@@ -28,14 +29,15 @@ export const Participant = ({ participant, isLocalParticipant }: Props) => {
   const publication = usePublication(participant)
 
   const vPub = publication.find((p) => p.kind === "video")
-  // const aPub = publication.find((p) => p.kind === "audio")
+  const aPub = publication.find((p) => p.kind === "audio")
 
   const vTrack = useTrack(vPub)
-  // const aTrack = useTrack(aPub)
+  const aTrack = useTrack(aPub)
 
   return (
     <div className="border-slate-100">
       <ParticipantTrack track={vTrack} />
+      <ParticipantAudioTrack track={aTrack} />
       <p className="text-center p-2 bg-sky-500 uppercase text-sm font-bold">
         {participant.identity}
         {isLocalParticipant && " (you)"}

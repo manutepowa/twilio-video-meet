@@ -12,7 +12,10 @@ export const useMeet = () => {
   const enterToRoom = async () => {
     setLoadingRoom(true)
     const token = await getMeetToken(nickname, roomName)
-    const connection = await Video.connect(token)
+    const connection = await Video.connect(token, {
+      video: true,
+      audio: true,
+    })
     setRoom(connection)
     setIsOnRoom(true)
     setLoadingRoom(false)

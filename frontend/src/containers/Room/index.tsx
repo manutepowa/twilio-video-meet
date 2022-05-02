@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { Participant } from "../../components/Participants/Participant"
+import { RoomActions } from "../../components/RoomActions/RoomActions"
 import MeetContext from "../../context/MeetContext"
 import { useParticipants } from "../../hooks/useParticipants"
 
@@ -26,11 +27,7 @@ function Room() {
             />
           ))}
       </div>
-      <div>
-        <button type="button" onClick={() => room?.disconnect()}>
-          Disconnect
-        </button>
-      </div>
+      <RoomActions />
     </div>
   )
 }
