@@ -1,12 +1,13 @@
 const twilio = require('twilio');
 
-const response = new Twilio.Response();
-response.appendHeader('Access-Control-Allow-Origin', 'https://twilio-video-meet.vercel.app');
-response.appendHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
-response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
-response.appendHeader('Content-Type', 'application/json');
 
 exports.handler = async function(context, event, callback) {
+  const response = new Twilio.Response();
+  response.appendHeader('Access-Control-Allow-Origin', context.ALLOW_ORIGIN);
+  response.appendHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
+  response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
+  response.appendHeader('Content-Type', 'application/json');
+  
   const { room, username } = event
   const accessToken = new twilio.jwt.AccessToken(context.ACCOUNT_SID, context.API_KEY_SID, context.API_KEY_SECRET);
   accessToken.identity = username
