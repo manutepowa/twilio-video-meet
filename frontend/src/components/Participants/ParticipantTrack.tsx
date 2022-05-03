@@ -6,7 +6,6 @@ export const ParticipantTrack = ({ track }: any) => {
   useEffect(() => {
     const el = ref?.current
     if (track && el !== null) {
-      console.log("track", track)
       track.attach(el)
       // ref.current && ref.current.appendChild(track.attach())
       return () => {

@@ -8,6 +8,7 @@ export const useMeet = () => {
   const [room, setRoom] = useState<Video.Room>()
   const [isOnRoom, setIsOnRoom] = useState<boolean>(false)
   const [loadingRoom, setLoadingRoom] = useState<boolean>(false)
+  const [localParticipant, setLocalParticipant] = useState<Video.LocalParticipant>()
 
   const enterToRoom = async () => {
     setLoadingRoom(true)
@@ -17,6 +18,7 @@ export const useMeet = () => {
       audio: true,
     })
     setRoom(connection)
+    setLocalParticipant(connection.localParticipant)
     setIsOnRoom(true)
     setLoadingRoom(false)
   }
@@ -30,5 +32,6 @@ export const useMeet = () => {
     room,
     loadingRoom,
     setIsOnRoom,
+    localParticipant,
   }
 }

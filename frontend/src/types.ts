@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
 import {
+    LocalParticipant,
   LocalTrackPublication,
   LocalVideoTrack,
   RemoteTrackPublication,
@@ -16,6 +17,7 @@ export interface IContext {
   room?: Room | undefined;
   loadingRoom?: boolean;
   setIsOnRoom?: Dispatch<SetStateAction<boolean>>;
+  localParticipant?: LocalParticipant;
 }
 
 export type PublicationType = LocalTrackPublication | RemoteTrackPublication
