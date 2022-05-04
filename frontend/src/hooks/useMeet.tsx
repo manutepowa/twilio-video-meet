@@ -16,6 +16,7 @@ export const useMeet = () => {
     const connection = await Video.connect(token, {
       video: true,
       audio: true,
+      dominantSpeaker: true,
     })
     setRoom(connection)
     setLocalParticipant(connection.localParticipant)

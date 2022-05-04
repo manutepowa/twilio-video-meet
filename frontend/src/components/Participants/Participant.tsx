@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Participant as P } from "twilio-video"
+import { useDominantSpeaker } from "../../hooks/useDominantSpeaker"
 import { usePublication } from "../../hooks/usePublication"
 import { PublicationType } from "../../types"
 import { ParticipantAudioTrack } from "./ParticipantAudioTrack"
@@ -27,6 +28,7 @@ const useTrack = (publication: PublicationType | undefined) => {
 
 export const Participant = ({ participant, isLocalParticipant }: Props) => {
   const publication = usePublication(participant)
+  const dominantSpeaker = useDominantSpeaker()
 
   const vPub = publication.find((p) => p.kind === "video")
   const aPub = publication.find((p) => p.kind === "audio")
@@ -36,11 +38,12 @@ export const Participant = ({ participant, isLocalParticipant }: Props) => {
 
   return (
     <div className="border-slate-100">
-      <ParticipantTrack track={vTrack} />
+      <ParticipantTrack track={vTrack} dominant={dominantSpeaker !== null} />
       <ParticipantAudioTrack track={aTrack} />
       <p className="text-center p-2 bg-sky-500 uppercase text-sm font-bold">
         {participant.identity}
         {isLocalParticipant && " (you)"}
+        {dominantSpeaker?.identity === participant.identity && " (dominant)"}
       </p>
     </div>
   )
