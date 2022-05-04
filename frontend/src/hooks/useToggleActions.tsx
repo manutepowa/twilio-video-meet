@@ -7,12 +7,12 @@ type Props = LocalParticipant | undefined
 export const useToggleActions = (localParticipant: Props) => {
   const [localAudioTrack, setLocalAudioTrack] = useState<LocalAudioTrack>()
   const [localVideoTrack, setLocalVideoTrack] = useState<LocalVideoTrack>()
-  const [isMuted, setIsMuted] = useState(localAudioTrack?.isEnabled)
+  const [isAudioEnabled, setIsAudioEnabled] = useState(localAudioTrack?.isEnabled)
   const [isVideoEnabled, setIsVideoEnabled] = useState(localVideoTrack?.isEnabled)
   
   const muteAudio = () => {
     localAudioTrack?.isEnabled ? localAudioTrack?.disable() : localAudioTrack?.enable()
-    setIsMuted(localAudioTrack?.isEnabled)
+    setIsAudioEnabled(localAudioTrack?.isEnabled)
   }
   const disableVideo = () => {
     localVideoTrack?.isEnabled ? localVideoTrack?.disable() : localVideoTrack?.enable()
@@ -20,19 +20,21 @@ export const useToggleActions = (localParticipant: Props) => {
   }
   
   useEffect(() => {
-    localParticipant?.audioTracks.forEach(({ track }: any) => {
+    localParticipant?.audioTracks.forEach(({ track }: {track: LocalAudioTrack}) => {
       setLocalAudioTrack(track)
+      setIsAudioEnabled(track.isEnabled)
     })
     // each videorack is a track
-    localParticipant?.videoTracks.forEach(({ track }: any) => {
+    localParticipant?.videoTracks.forEach(({ track }: {track: LocalVideoTrack}) => {
       setLocalVideoTrack(track)
+      setIsVideoEnabled(track.isEnabled)
     })
   }, [localParticipant?.audioTracks, localParticipant?.videoTracks])
   
   return {
     localAudio: {
       muteAudio,
-      isMuted
+      isAudioEnabled
     },
     localVideo: {
       disableVideo,
