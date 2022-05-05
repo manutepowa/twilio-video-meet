@@ -14,6 +14,7 @@ function Meet() {
     if (roomName) {
       setRoomName?.(roomName)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomName])
 
   return (
