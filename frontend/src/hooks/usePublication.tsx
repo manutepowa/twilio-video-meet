@@ -7,7 +7,7 @@ export const usePublication = (participant: Participant) => {
   
   useEffect(() => {
     setPublications(Array.from(participant.tracks.values()) as PublicationType[]);
-    const publicationAdded = (publication: PublicationType) =>
+    const publicationAdded = (publication: PublicationType) => 
       setPublications(prevPublications => [...prevPublications, publication]);
     const publicationRemoved = (publication: PublicationType) =>
       setPublications(prevPublications => prevPublications.filter(p => p !== publication));

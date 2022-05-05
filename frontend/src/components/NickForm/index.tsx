@@ -1,6 +1,7 @@
-import { FC, FormEvent, useContext, useState } from "react"
+import { FC, FormEvent, useContext } from "react"
 import MeetContext from "../../context/MeetContext"
-import { LoadingRoom } from "./LoadingRoom"
+import { Pulsar } from '@uiball/loaders'
+
 
 export const NickForm: FC = () => {
   const { nickname, setNickname, enterToRoom, loadingRoom } =
@@ -31,7 +32,11 @@ export const NickForm: FC = () => {
             onChange={(event) => setNickname?.(event.target.value)}
           ></input>
           {loadingRoom ? (
-            <LoadingRoom />
+            <Pulsar 
+             size={40}
+             speed={1.75} 
+             color="#fff" 
+            />
           ) : (
             <button
               type="submit"

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import { Participant as P } from "twilio-video"
+import { LocalAudioTrack, LocalTrack, LocalTrackPublication, LocalVideoTrack, Participant as P, RemoteAudioTrack, RemoteTrack, RemoteTrackPublication, RemoteVideoTrack } from "twilio-video"
 import { useDominantSpeaker } from "../../hooks/useDominantSpeaker"
 import { usePublication } from "../../hooks/usePublication"
+import { useSpeakerAudio } from "../../hooks/useSpeakerAudio"
 import { PublicationType } from "../../types"
 import { ParticipantAudioTrack } from "./ParticipantAudioTrack"
 import { ParticipantTrack } from "./ParticipantTrack"
@@ -11,8 +12,8 @@ type Props = {
   isLocalParticipant: boolean,
 }
 
-const useTrack = (publication: PublicationType | undefined) => {
-  const [track, setTrack] = useState(publication?.track)
+const useTrack = (publication: LocalTrackPublication | RemoteTrackPublication | undefined) => {
+  const [track, setTrack] = useState<LocalTrack | RemoteTrack | null | undefined>(publication?.track)
 
   useEffect(() => {
     setTrack(publication?.track)
@@ -22,7 +23,7 @@ const useTrack = (publication: PublicationType | undefined) => {
       publication?.on("unsubscribed", removeTrack)
     }
   }, [publication])
-
+  
   return track
 }
 
@@ -32,9 +33,11 @@ export const Participant = ({ participant, isLocalParticipant }: Props) => {
 
   const vPub = publication.find((p) => p.kind === "video")
   const aPub = publication.find((p) => p.kind === "audio")
-
+  
   const vTrack = useTrack(vPub)
-  const aTrack = useTrack(aPub)
+  const aTrack = useTrack(aPub) as LocalAudioTrack | RemoteAudioTrack | undefined 
+  
+  const isAudioEnabled = useSpeakerAudio(aTrack) 
 
   return (
     <div className="border-slate-100">
@@ -44,6 +47,7 @@ export const Participant = ({ participant, isLocalParticipant }: Props) => {
         {participant.identity}
         {isLocalParticipant && " (you)"}
         {dominantSpeaker?.identity === participant.identity && " (dominant)"}
+        {isAudioEnabled ? " (audio enable)" : "(audio disable)"}
       </p>
     </div>
   )

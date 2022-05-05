@@ -11,12 +11,10 @@ export const useDominantSpeaker = () => {
       console.log("room connected")
       const handleDominantSpeakerChanged = (newDominantSpeaker: RemoteParticipant) => {
         if (newDominantSpeaker !== null) {
-          console.log({ newDominantSpeaker })
           setDominantSpeaker(newDominantSpeaker);
         }
       };
       const handleParticipantDisconnected = (participant: RemoteParticipant) => {
-        console.log({ participant })
         setDominantSpeaker(prevDominantSpeaker => {
           return prevDominantSpeaker === participant ? null : prevDominantSpeaker;
         });
