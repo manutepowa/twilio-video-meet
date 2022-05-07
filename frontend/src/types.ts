@@ -8,6 +8,10 @@ import {
   Room,
 } from "twilio-video"
 
+export interface IChatContext {
+  isChatOpen?: boolean
+  setIsChatOpen?: Dispatch<SetStateAction<boolean>>
+}
 export interface IContext {
   nickname?: string;
   setNickname?: Dispatch<SetStateAction<string>>;

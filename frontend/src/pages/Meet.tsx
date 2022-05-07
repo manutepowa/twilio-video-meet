@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react"
 import { useRoute } from "wouter"
 import { NickForm } from "../components/NickForm"
 import UserVideo from "../components/UserVideo"
+import { Chat } from "../containers/Chat"
 import Room from "../containers/Room"
 import MeetContext from "../context/MeetContext"
 
@@ -25,7 +26,10 @@ function Meet() {
           <UserVideo />
         </div>
       ) : (
-        <Room />
+        <div className="flex">
+          <Room />
+          <Chat />
+        </div>
       )}
     </div>
   )

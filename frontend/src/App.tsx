@@ -3,6 +3,7 @@ import Home from "./pages/Home"
 import Meet from "./pages/Meet"
 import "./App.css"
 import { MeetProvider } from "./context/MeetContext"
+import { ChatProvider } from "./context/ChatContext"
 
 function App(): JSX.Element {
   return (
@@ -10,7 +11,9 @@ function App(): JSX.Element {
       <Route path="/" component={Home} />
       <Route path="/:roomName">
         <MeetProvider>
-          <Meet />
+          <ChatProvider>
+            <Meet />
+          </ChatProvider>
         </MeetProvider>
       </Route>
     </Switch>

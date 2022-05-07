@@ -1,10 +1,10 @@
-import { createContext, ReactChild } from "react"
+import { createContext, ReactNode } from "react"
 import { useMeet } from "../hooks/useMeet"
 import { IContext } from "../types"
 
 const MeetContext = createContext<IContext>({})
 
-const MeetProvider = ({ children }: { children: ReactChild }) => {
+const MeetProvider = ({ children }: { children: ReactNode }) => {
   const meetData: IContext = useMeet()
 
   return (

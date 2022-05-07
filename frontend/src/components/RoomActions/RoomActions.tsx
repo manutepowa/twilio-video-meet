@@ -1,12 +1,14 @@
 import { useContext } from "react"
 import MeetContext from "../../context/MeetContext"
-import { BiMicrophone, BiMicrophoneOff, BiPhoneOff, BiVideo, BiVideoOff } from "react-icons/bi";
+import { BiMicrophone, BiMicrophoneOff, BiPhoneOff, BiVideo, BiVideoOff, BiMessageDetail, BiMessageX } from "react-icons/bi";
 import { useToggleActions } from "../../hooks/useToggleActions";
+import ChatContext from "../../context/ChatContext";
 
 const iconsStyle = 'text-white text-2xl'
 
 export const RoomActions = () => {
   const { room, localParticipant } = useContext(MeetContext)
+  const { setIsChatOpen, isChatOpen } = useContext(ChatContext)
   const { localAudio, localVideo } = useToggleActions(localParticipant)
   
   return (
@@ -20,6 +22,11 @@ export const RoomActions = () => {
         <div className="action-buttons">
           <button type="button" onClick={() => localVideo.disableVideo()}>
             {localVideo.isVideoEnabled ? <BiVideo className={iconsStyle} /> : <BiVideoOff className={iconsStyle} />}
+          </button>
+        </div>
+        <div className="action-buttons">
+          <button type="button" onClick={() => setIsChatOpen?.(!isChatOpen)}>
+            {!isChatOpen ? <BiMessageDetail className={iconsStyle} /> : <BiMessageX className={iconsStyle} />}
           </button>
         </div>
         <div className="action-buttons">
