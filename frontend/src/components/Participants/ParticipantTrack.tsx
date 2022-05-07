@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-export const ParticipantTrack = ({ track }: any) => {
+export const ParticipantTrack = ({ track, imDominantSpeaker }: any) => {
   const ref = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -15,5 +15,7 @@ export const ParticipantTrack = ({ track }: any) => {
     }
   }, [track])
 
-  return <video className="w-full" ref={ref}></video>
+  return <div className="w-full h-full">
+    <video className={`h-full border-2 rounded-md ${imDominantSpeaker ? 'border-sky-500' : 'border-primary'}`} ref={ref}></video>
+  </div>
 }
