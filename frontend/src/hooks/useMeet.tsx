@@ -22,7 +22,11 @@ export const useMeet = () => {
     setLocalParticipant(connection.localParticipant)
     setIsOnRoom(true)
     setLoadingRoom(false)
+    window.addEventListener("beforeunload", () => {
+      connection.disconnect()
+    })
   }
+  
 
   return {
     nickname,
