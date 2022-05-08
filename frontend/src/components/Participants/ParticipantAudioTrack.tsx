@@ -1,6 +1,11 @@
 import { useEffect, useRef } from 'react'
+import { LocalAudioTrack, RemoteAudioTrack } from 'twilio-video'
 
-export const ParticipantAudioTrack = ({ track }: any) => {
+type Props = {
+  track: LocalAudioTrack | RemoteAudioTrack | undefined
+}
+
+export const ParticipantAudioTrack = ({ track }: Props) => {
   const ref = useRef<HTMLAudioElement>(null)
   useEffect(() => {
     const el = ref?.current
