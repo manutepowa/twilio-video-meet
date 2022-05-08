@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Form } from "../components/Chat/Form";
 import ChatContext from "../context/ChatContext";
 
 export const Chat = () => {
@@ -12,8 +13,8 @@ export const Chat = () => {
           <div className="flex-1 py-2 rounded-md bg-sky-100 w-full text-center font-bold">
             sadf
           </div>
-          <div className="py-2 rounded-md bg-sky-100 w-full text-center font-bold">
-            input and button
+          <div className="rounded-md bg-sky-100 w-full text-center">
+            <Form />
           </div>
         </div>
       )}
