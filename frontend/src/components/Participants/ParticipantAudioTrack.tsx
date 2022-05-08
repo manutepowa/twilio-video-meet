@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export const ParticipantAudioTrack = ({track}: any) => {
+export const ParticipantAudioTrack = ({ track }: any) => {
   const ref = useRef<HTMLAudioElement>(null)
   useEffect(() => {
     const el = ref?.current

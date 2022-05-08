@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "react-app",
+    "standard",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "no-use-before-define": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "off"
+  }
+}

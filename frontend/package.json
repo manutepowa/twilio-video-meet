@@ -26,12 +26,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -45,6 +39,10 @@
     ]
   },
   "devDependencies": {
-    "tailwind": "^4.0.0"
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.15.0",
+    "tailwind": "^4.0.0",
+    "ts-standard": "^11.0.0"
   }
 }

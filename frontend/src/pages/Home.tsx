@@ -1,4 +1,4 @@
-function Home() {
+function Home () {
   return <div>Meet</div>
 }
 

@@ -1,10 +1,10 @@
-import { useContext } from "react"
-import { Participant } from "../../components/Participants/Participant"
-import { RoomActions } from "../../components/RoomActions/RoomActions"
-import MeetContext from "../../context/MeetContext"
-import { useParticipants } from "../../hooks/useParticipants"
+import { useContext } from 'react'
+import { Participant } from '../../components/Participants/Participant'
+import { RoomActions } from '../../components/RoomActions/RoomActions'
+import MeetContext from '../../context/MeetContext'
+import { useParticipants } from '../../hooks/useParticipants'
 
-function Room() {
+function Room () {
   const participants = useParticipants()
   const { room } = useContext(MeetContext)
   const localParticipant = room?.localParticipant

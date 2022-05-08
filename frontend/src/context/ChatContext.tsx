@@ -1,17 +1,18 @@
-import { createContext, ReactNode, useState } from "react"
-import { IChatContext } from "../types"
+import { createContext, ReactNode, useState } from 'react'
+import { IChatContext } from '../types'
 
 const ChatContext = createContext<IChatContext>({})
 
 const ChatProvider = ({ children }: { children: ReactNode }) => {
-  const [isChatOpen, setIsChatOpen] = useState<boolean>(true)
-  
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false)
 
   return (
-    <ChatContext.Provider value={{
-      isChatOpen,
-      setIsChatOpen,
-    }}>
+    <ChatContext.Provider
+      value={{
+        isChatOpen,
+        setIsChatOpen
+      }}
+    >
       {children}
     </ChatContext.Provider>
   )

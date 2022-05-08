@@ -1,12 +1,12 @@
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch, SetStateAction } from 'react'
 import {
-    LocalParticipant,
+  LocalParticipant,
   LocalTrackPublication,
   LocalVideoTrack,
   RemoteTrackPublication,
   RemoteVideoTrack,
-  Room,
-} from "twilio-video"
+  Room
+} from 'twilio-video'
 
 export interface IChatContext {
   isChatOpen?: boolean

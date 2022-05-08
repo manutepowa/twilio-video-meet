@@ -1,7 +1,6 @@
-import { FC, FormEvent, useContext } from "react"
-import MeetContext from "../../context/MeetContext"
+import { FC, FormEvent, useContext } from 'react'
+import MeetContext from '../../context/MeetContext'
 import { Pulsar } from '@uiball/loaders'
-
 
 export const NickForm: FC = () => {
   const { nickname, setNickname, enterToRoom, loadingRoom } =
@@ -10,7 +9,7 @@ export const NickForm: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (nickname === "") {
+    if (nickname === '') {
       return
     }
     enterToRoom?.()
@@ -31,20 +30,18 @@ export const NickForm: FC = () => {
             value={nickname}
             onChange={(event) => setNickname?.(event.target.value)}
           ></input>
-          {loadingRoom ? (
-            <Pulsar 
-             size={40}
-             speed={1.75} 
-             color="#fff" 
-            />
-          ) : (
+          {loadingRoom
+            ? (
+            <Pulsar size={40} speed={1.75} color="#fff" />
+              )
+            : (
             <button
               type="submit"
               className="w-full py-2 my-4 rounded-sm bg-sky-500 hover:bg-sky-400"
             >
               Access room
             </button>
-          )}
+              )}
         </form>
       </div>
     </div>

@@ -1,14 +1,15 @@
-import { useState } from "react"
-import getMeetToken from "../services/getToken"
-import * as Video from "twilio-video"
+import { useState } from 'react'
+import getMeetToken from '../services/getToken'
+import * as Video from 'twilio-video'
 
 export const useMeet = () => {
-  const [nickname, setNickname] = useState<string>("")
-  const [roomName, setRoomName] = useState<string>("")
+  const [nickname, setNickname] = useState<string>('')
+  const [roomName, setRoomName] = useState<string>('')
   const [room, setRoom] = useState<Video.Room>()
   const [isOnRoom, setIsOnRoom] = useState<boolean>(false)
   const [loadingRoom, setLoadingRoom] = useState<boolean>(false)
-  const [localParticipant, setLocalParticipant] = useState<Video.LocalParticipant>()
+  const [localParticipant, setLocalParticipant] =
+    useState<Video.LocalParticipant>()
 
   const enterToRoom = async () => {
     setLoadingRoom(true)
@@ -16,17 +17,16 @@ export const useMeet = () => {
     const connection = await Video.connect(token, {
       video: true,
       audio: true,
-      dominantSpeaker: true,
+      dominantSpeaker: true
     })
     setRoom(connection)
     setLocalParticipant(connection.localParticipant)
     setIsOnRoom(true)
     setLoadingRoom(false)
-    window.addEventListener("beforeunload", () => {
+    window.addEventListener('beforeunload', () => {
       connection.disconnect()
     })
   }
-  
 
   return {
     nickname,
@@ -37,6 +37,6 @@ export const useMeet = () => {
     room,
     loadingRoom,
     setIsOnRoom,
-    localParticipant,
+    localParticipant
   }
 }

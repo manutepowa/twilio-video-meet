@@ -1,7 +1,7 @@
-import { useContext, useEffect, useRef } from "react"
-import { createLocalVideoTrack, LocalTrack } from "twilio-video"
+import { useContext, useEffect, useRef } from 'react'
+import { createLocalVideoTrack, LocalTrack } from 'twilio-video'
 
-function UserVideo() {
+function UserVideo () {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

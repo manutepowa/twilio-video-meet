@@ -1,6 +1,6 @@
-import { createContext, ReactNode } from "react"
-import { useMeet } from "../hooks/useMeet"
-import { IContext } from "../types"
+import { createContext, ReactNode } from 'react'
+import { useMeet } from '../hooks/useMeet'
+import { IContext } from '../types'
 
 const MeetContext = createContext<IContext>({})
 

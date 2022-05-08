@@ -1,14 +1,14 @@
-export default async function getMeetToken(username: string, room: string) {
+export default async function getMeetToken (username: string, room: string) {
   try {
     const response = await fetch(
       `${process.env.REACT_APP_BACK_URL}/get-token`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, room }),
+        body: JSON.stringify({ username, room })
       }
     )
     const json = await response.json()

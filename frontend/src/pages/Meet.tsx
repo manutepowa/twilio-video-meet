@@ -1,36 +1,39 @@
-import { useContext, useEffect } from "react"
-import { useRoute } from "wouter"
-import { NickForm } from "../components/NickForm"
-import UserVideo from "../components/UserVideo"
-import { Chat } from "../containers/Chat"
-import Room from "../containers/Room"
-import MeetContext from "../context/MeetContext"
+import { useContext, useEffect } from 'react'
+import { useRoute } from 'wouter'
+import { NickForm } from '../components/NickForm'
+import UserVideo from '../components/UserVideo'
+import { Chat } from '../containers/Chat'
+import Room from '../containers/Room'
+import MeetContext from '../context/MeetContext'
 
-function Meet() {
-  const [match, params] = useRoute("/:roomName")
+function Meet () {
+  // eslint-disable-next-line
+  const [match, params] = useRoute('/:roomName')
   const { setRoomName, isOnRoom } = useContext(MeetContext)
-  const roomName = params?.roomName ?? ""
+  const roomName = params?.roomName ?? ''
 
   useEffect(() => {
     if (roomName) {
       setRoomName?.(roomName)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [roomName])
 
   return (
     <div className="bg-gray-200">
-      {!isOnRoom ? (
+      {!isOnRoom
+        ? (
         <div className="flex flex-auto">
           <NickForm />
           <UserVideo />
         </div>
-      ) : (
+          )
+        : (
         <div className="flex">
           <Room />
           <Chat />
         </div>
-      )}
+          )}
     </div>
   )
 }
