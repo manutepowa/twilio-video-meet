@@ -1,3 +1,4 @@
+import { Conversation, Message } from '@twilio/conversations'
 import { Dispatch, SetStateAction } from 'react'
 import {
   LocalParticipant,
@@ -11,6 +12,9 @@ import {
 export interface IChatContext {
   isChatOpen?: boolean
   setIsChatOpen?: Dispatch<SetStateAction<boolean>>
+  chatConnect?: (token: string, id: string) => void
+  conversation?: Conversation | null
+  messages?: Message[]
 }
 export interface IContext {
   nickname?: string;

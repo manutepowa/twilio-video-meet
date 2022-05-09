@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import ChatContext from '../../context/ChatContext'
 
 export const Form = () => {
+  const { conversation } = useContext(ChatContext)
   const [value, setValue] = useState('')
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (value !== '') {
-      console.log(value)
+      conversation?.sendMessage(value.trim())
     }
     setValue('')
   }

@@ -11,8 +11,7 @@ export default async function getMeetToken (username: string, room: string) {
         body: JSON.stringify({ username, room })
       }
     )
-    const json = await response.json()
-    return json.token
+    return await response.json()
   } catch (e) {
     console.error(e)
   }

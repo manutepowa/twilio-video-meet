@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import getMeetToken from '../services/getToken'
 import * as Video from 'twilio-video'
+import ChatContext from '../context/ChatContext'
 
 export const useMeet = () => {
   const [nickname, setNickname] = useState<string>('')
@@ -11,9 +12,12 @@ export const useMeet = () => {
   const [localParticipant, setLocalParticipant] =
     useState<Video.LocalParticipant>()
 
-  const enterToRoom = async () => {
+  const { chatConnect } = useContext(ChatContext)
+
+  const enterToRoom = useCallback(async () => {
     setLoadingRoom(true)
-    const token = await getMeetToken(nickname, roomName)
+    // eslint-disable-next-line
+    const { token, conversation_sid } = await getMeetToken(nickname, roomName)
     const connection = await Video.connect(token, {
       video: true,
       audio: true,
@@ -23,10 +27,11 @@ export const useMeet = () => {
     setLocalParticipant(connection.localParticipant)
     setIsOnRoom(true)
     setLoadingRoom(false)
+    chatConnect?.(token, conversation_sid)
     window.addEventListener('beforeunload', () => {
       connection.disconnect()
     })
-  }
+  }, [nickname, roomName, chatConnect])
 
   return {
     nickname,

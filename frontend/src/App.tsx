@@ -10,11 +10,11 @@ function App (): JSX.Element {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/:roomName">
-        <MeetProvider>
-          <ChatProvider>
-            <Meet />
-          </ChatProvider>
-        </MeetProvider>
+        <ChatProvider>
+          <MeetProvider>
+              <Meet />
+          </MeetProvider>
+        </ChatProvider>
       </Route>
     </Switch>
   )
