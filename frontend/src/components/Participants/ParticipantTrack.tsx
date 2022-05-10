@@ -1,12 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { LocalVideoTrack, RemoteVideoTrack } from 'twilio-video'
+import clsx from 'clsx'
 
 type Props = {
   track: LocalVideoTrack | RemoteVideoTrack | undefined
   imDominantSpeaker: boolean
+  grid: number
 }
 
-export const ParticipantTrack = ({ track, imDominantSpeaker }: Props) => {
+export const ParticipantTrack = ({ track, imDominantSpeaker, grid }: Props) => {
   const ref = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -22,11 +24,11 @@ export const ParticipantTrack = ({ track, imDominantSpeaker }: Props) => {
   }, [track])
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full border-2 rounded-md">
       <video
-        className={`h-full border-2 rounded-md ${
-          imDominantSpeaker ? 'border-sky-500' : 'border-primary'
-        }`}
+        className={`h-full border-2 rounded-md w-full ${
+          imDominantSpeaker ? 'border-[#44c2fd]' : 'border-gray-800'
+        }` }
         ref={ref}
       ></video>
     </div>

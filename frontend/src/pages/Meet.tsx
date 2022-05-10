@@ -20,12 +20,15 @@ function Meet () {
   }, [roomName])
 
   return (
-    <div className="bg-gray-200">
+    <div className="bg-[url('../public/fondo-def.jpg')] bg-cover bg-center-center bg-no-repeat">
+      <div className='' >
       {!isOnRoom
         ? (
         <div className="flex flex-auto">
           <NickForm />
           <UserVideo />
+
+              <div className='w-1/2 p-5 bg-white rounded-xl bg-opacity-20 backdrop-filter backdrop-blur-lg'></div>
         </div>
           )
         : (
@@ -34,6 +37,7 @@ function Meet () {
           <Chat />
         </div>
           )}
+          </div>
     </div>
   )
 }
