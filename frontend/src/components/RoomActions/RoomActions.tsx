@@ -16,8 +16,10 @@ const iconsStyle = 'text-white text-2xl'
 
 export const RoomActions = () => {
   const { room, localParticipant } = useContext(MeetContext)
-  const { setIsChatOpen, isChatOpen } = useContext(ChatContext)
+  const { setIsChatOpen, isChatOpen, haveNewMessages } = useContext(ChatContext)
   const { localAudio, localVideo } = useToggleActions(localParticipant)
+
+  console.log({ haveNewMessages })
 
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -48,7 +50,12 @@ export const RoomActions = () => {
           <button type="button" onClick={() => setIsChatOpen?.(!isChatOpen)}>
             {!isChatOpen
               ? (
-              <BiMessageDetail className={iconsStyle} />
+                <div>
+                  {haveNewMessages && (
+                    <div className="bg-red-500 rounded-full p-[5px] absolute"></div>
+                  )}
+                  <BiMessageDetail className={iconsStyle} />
+                </div>
                 )
               : (
               <BiMessageX className={iconsStyle} />

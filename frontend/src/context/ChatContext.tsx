@@ -10,6 +10,7 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [sid, setSid] = useState<string>()
   const [conversation, setConversation] = useState<Conversation | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
+  const [haveNewMessages, setHaveNewMessages] = useState<boolean>(false)
 
   const chatConnect = useCallback(async (token: string, id: string) => {
     console.log('connecting to chat...')
@@ -19,7 +20,10 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
   }, [])
   useEffect(() => {
     if (conversation) {
-      const handleMessageAdded = (message: Message) => setMessages(oldMessages => [...oldMessages, message])
+      const handleMessageAdded = (message: Message) => {
+        setMessages(oldMessages => [...oldMessages, message])
+        !isChatOpen && setHaveNewMessages(true)
+      }
       conversation.getMessages().then(newMessages => setMessages(newMessages.items))
       conversation.on('messageAdded', handleMessageAdded)
       return () => {
@@ -37,6 +41,12 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [client, sid])
 
+  useEffect(() => {
+    if (haveNewMessages && isChatOpen) {
+      setHaveNewMessages(false)
+    }
+  }, [isChatOpen, haveNewMessages])
+
   return (
     <ChatContext.Provider
       value={{
@@ -44,7 +54,8 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
         setIsChatOpen,
         chatConnect,
         conversation,
-        messages
+        messages,
+        haveNewMessages
       }}
     >
       {children}

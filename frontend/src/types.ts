@@ -15,6 +15,7 @@ export interface IChatContext {
   chatConnect?: (token: string, id: string) => void
   conversation?: Conversation | null
   messages?: Message[]
+  haveNewMessages?: boolean
 }
 export interface IContext {
   nickname?: string;
