@@ -47,23 +47,33 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
   const isVideoEnabled = useIsTrackEnabled(vTrack)
 
   return (
-    <div className="relative">
+
+    <div className={clsx('border-2 border-slate-400/20 rounded-md ', {
+
+      'w-1/2': grid === 2,
+      'w-1/3': grid > 2,
+      'w-1/4': grid > 6,
+      'w-1/5': grid > 8
+
+    })}>
+      <div className='relative'>
       <ParticipantTrack grid={grid} track={vTrack} imDominantSpeaker={imDominantSpeaker} />
       <ParticipantAudioTrack track={aTrack} />
       {!isVideoEnabled && (
-        <div className="w-16 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+        <div className="absolute w-16 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
           <img className="rounded-md" src={avatarURL} alt="avatar" />
         </div>
       )}
-      <div className="px-1 text-sm rounded-md bg-primary bg-opacity-80 bottom-1 left-1">
+      <div className="absolute px-1 text-sm rounded-md bg-primary bg-opacity-80 bottom-1 left-1">
         {participant.identity}
         {isLocalParticipant && ' (me)'}
       </div>
       {!isAudioEnabled && (
-        <div className="p-1 rounded-md bg-primary bg-opacity-80 bottom-1 right-1">
+        <div className="absolute p-1 rounded-md bg-primary bg-opacity-80 bottom-1 right-1">
           <BiMicrophoneOff className="text-white" />
         </div>
       )}
+      </div>
     </div>
   )
 }

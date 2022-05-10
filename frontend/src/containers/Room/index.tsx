@@ -11,14 +11,10 @@ function Room () {
   const localParticipant = room?.localParticipant
   const [numparticipants, setNumparticipants] = participants
   const aux = participants.length + 1
-
-  const shape = Math.round(Math.sqrt(aux))
-  console.log({ shape })
-  const result = `grid-cols-${shape} grid-rows-${shape}`
-
+  console.log(aux)
   return (
-    <div className="w-full h-screen bg-indigo-900/90">
-      <div className={`grid h-[100%] grid-flow-col ${result} gap-4  min-w-full`}>
+    <div className="w-full min-h-screen pb-6 bg-repeat bg-indigo-900/90">
+      <div className="flex flex-wrap ">
         {localParticipant && (
           <Participant
             grid={aux}
