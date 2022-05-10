@@ -1,5 +1,16 @@
 const twilio = require('twilio');
 
+async function getChatServiceSid(client, chatId) {
+  const conversations = await client.conversations.conversations.list();
+  const existsChatId = conversations.find(conversation => conversation.friendlyName === chatId);
+  const conversation = existsChatId
+    ? await client.conversations.conversations(existsChatId.sid).fetch()
+    : await client.conversations.conversations.create({
+      friendlyName: chatId
+    });
+  
+  return conversation;
+}
 
 exports.handler = async function(context, event, callback) {
   const response = new Twilio.Response();
@@ -11,7 +22,11 @@ exports.handler = async function(context, event, callback) {
   const { room, username } = event
   
   const client = new twilio(context.ACCOUNT_SID, context.AUTH_TOKEN);
-  const conversation = await client.conversations.services(context.CHAT_SERVICE_SID).conversations(context.CONVERSATION_SID).fetch();
+  
+  const conversation = await getChatServiceSid(client, room); 
+  // const conversation = await client.conversations.services(context.CHAT_SERVICE_SID).conversations(chat_service_sid).fetch();
+  
+  // check participant and create if not exists
   const participants = await client.conversations.conversations(conversation.sid).participants.list();
   const partipantExists = participants.find(participant => participant.identity === username)
 
