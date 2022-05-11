@@ -17,12 +17,15 @@ export const NickForm: FC = () => {
 
   return (
     <div className="flex flex-col h-screen bg-primary min-w-[400px]">
+      <div className="">
+        <a href='/' className='flex flex-row justify-center w-full '><img src='/logom3-positivo.svg' alt='logo' className="w-1/2 mt-8 " /></a>
+        </div>
       <div className="flex flex-col content-center my-auto justify-items-center">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center py-8 mx-8"
         >
-          <label className="text-2xl font-bold">Introduzca su ávatar</label>
+          <label className="text-2xl font-bold">Introduzca su nickname</label>
           <input
             type="text"
             name="nickname"
@@ -37,7 +40,7 @@ export const NickForm: FC = () => {
             : (
             <button
               type="submit"
-              className="w-full py-2 my-4 rounded-sm bg-sky-500 hover:bg-sky-400"
+              className="w-full py-2 my-4 font-semibold rounded-sm bg-sky-500 hover:bg-sky-400"
             >
               Entrar a la sala
             </button>
