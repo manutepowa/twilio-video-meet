@@ -5,8 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: all 0.4s ease-in;
 }
 
+button,input{
+  transition: all 0.4s ease-in;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -63,4 +67,6 @@ code {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+    transition: all 0.4s ease-in;
+  
 }
