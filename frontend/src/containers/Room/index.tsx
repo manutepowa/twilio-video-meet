@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { RemoteParticipant } from 'twilio-video'
 import { Participant } from '../../components/Participants/Participant'
 import { RoomActions } from '../../components/RoomActions/RoomActions'
 import MeetContext from '../../context/MeetContext'
@@ -8,12 +9,15 @@ function Room () {
   const participants = useParticipants()
   const { room } = useContext(MeetContext)
   const localParticipant = room?.localParticipant
-
+  const [numparticipants, setNumparticipants] = participants
+  const aux = participants.length + 1
+  console.log(aux)
   return (
-    <div className="bg-primary h-screen">
-      <div className="grid grid-cols-3 gap-4 p-4">
+    <div className="w-full min-h-screen pb-6 bg-repeat bg-indigo-900/90">
+      <div className="flex flex-wrap ">
         {localParticipant && (
           <Participant
+            grid={aux}
             participant={localParticipant}
             isLocalParticipant={true}
           />
@@ -21,6 +25,7 @@ function Room () {
         {participants &&
           participants.map((participant, i) => (
             <Participant
+              grid= {aux}
               key={i}
               participant={participant}
               isLocalParticipant={false}
