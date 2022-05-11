@@ -22,7 +22,7 @@ export const NickForm: FC = () => {
           onSubmit={handleSubmit}
           className="flex flex-col items-center py-8 mx-8"
         >
-          <label className="text-2xl font-bold">Enter username</label>
+          <label className="text-2xl font-bold">Introduzca su ávatar</label>
           <input
             type="text"
             name="nickname"
@@ -39,7 +39,7 @@ export const NickForm: FC = () => {
               type="submit"
               className="w-full py-2 my-4 rounded-sm bg-sky-500 hover:bg-sky-400"
             >
-              Access room
+              Entrar a la sala
             </button>
               )}
         </form>
