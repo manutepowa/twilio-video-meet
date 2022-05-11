@@ -16,8 +16,8 @@ export const NickForm: FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-primary w-[450px]">
-      <div className="flex flex-col my-auto justify-items-center content-center">
+    <div className="flex flex-col h-screen bg-primary min-w-[400px]">
+      <div className="flex flex-col content-center my-auto justify-items-center">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center py-8 mx-8"
@@ -26,7 +26,7 @@ export const NickForm: FC = () => {
           <input
             type="text"
             name="nickname"
-            className="w-full rounded-sm py-2 text-gray-900 text-center"
+            className="w-full py-2 text-center text-gray-900 rounded-sm"
             value={nickname}
             onChange={(event) => setNickname?.(event.target.value)}
           ></input>
