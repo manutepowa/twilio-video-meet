@@ -12,15 +12,15 @@ export const Form = () => {
     setValue('')
   }
   return (
-    <form className="flex p-0 mx-1" onSubmit={handleSubmit}>
+    <form className="flex flex-row justify-between w-full p-0 mx-1" onSubmit={handleSubmit}>
       <input
-        className="w-full px-2 py-2 mx-2 rounded-md"
+        className="text-sm w-full ml-3 font-medium placeholder-opacity-50 transition duration-200 border-opacity-50 outline-none bg-[#f8f5ff] text-stone-400 placeholder-stone-800 focus:placeholder-[#026897] focus:border-emerald-400"
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="Write your message"
+        placeholder=" Escribe tu mensaje"
       />
-      <button className="px-2 py-2 " type="submit">
+      <button className="py-2 px-4 rounded-tr-lg rounded-br-lg mr-3 text-white font-semibold bg-[#026897]" type="submit">
         Send
       </button>
     </form>

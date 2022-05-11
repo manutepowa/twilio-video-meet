@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+import clsx from 'clsx'
+import { useContext, useEffect, useRef } from 'react'
 import ChatContext from '../../context/ChatContext'
 import MeetContext from '../../context/MeetContext'
 
@@ -13,9 +14,21 @@ function formatDate (date: Date | null) {
   return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
 }
 
+function useChatScroll<T> (dep: T) {
+  const ref = useRef<HTMLDivElement>()
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.scrollTop = ref.current.scrollHeight
+    }
+  }, [dep])
+  return ref
+}
+
 export const Messages = () => {
   const { messages } = useContext(ChatContext)
   const { localParticipant } = useContext(MeetContext)
+  console.log({ messages })
+  const ref = useChatScroll(messages)
   return (
     <div className='h-full'>
       <div className=''>
@@ -23,18 +36,24 @@ export const Messages = () => {
           const date = formatDate(message?.dateCreated)
           const isLocalParticipant = message.author === localParticipant?.identity
           return (
-            <div key={idx} className="m-1">
-              <div className='flex flex-col py-2 px-3 bg-gray-200 rounded-md'>
+            <div key={idx} className="m-2">
+              <div className={clsx('flex flex-col px-3 py-2 my-2 rounded-md', {
+
+                'bg-slate-100': isLocalParticipant,
+                'bg-slate-200': !isLocalParticipant
+
+              })}>
                 <div className='flex justify-between'>
-                  <div className='font-bold'>
+
+                  <div className='font-bold text-[#026897]'>
                     {message.author}
-                    {isLocalParticipant && <span className='text-gray-500'> (me)</span>}
+                    {isLocalParticipant && <span className='text-[#026897] text-sm'> (me)</span>}
                   </div>
                   <div className='text-xs'>
                     {date}
                   </div>
                 </div>
-                <div className='text-sm'>{message.body}</div>
+                <div className='mt-1 text-sm'>{message.body}</div>
               </div>
             </div>
           )

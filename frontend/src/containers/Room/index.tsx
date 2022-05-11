@@ -13,7 +13,7 @@ function Room () {
   const aux = participants.length + 1
   console.log(aux)
   return (
-    <div className="w-full min-h-screen pb-6 bg-repeat bg-indigo-900/90">
+    <div className="w-full min-h-screen bg-repeat bg-stone-900/90">
       <div className="flex flex-wrap ">
         {localParticipant && (
           <Participant

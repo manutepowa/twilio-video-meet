@@ -22,8 +22,8 @@ export const RoomActions = () => {
   console.log({ haveNewMessages })
 
   return (
-    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-      <div className="flex bg-black p-1 gap-1 rounded-md">
+    <div className="absolute bottom-0 transform -translate-x-1/2 -translate-y-1/2 left-1/2">
+      <div className="flex gap-1 p-1 bg-black rounded-md">
         <div className="action-buttons">
           <button type="button" onClick={() => localAudio.muteAudio()}>
             {localAudio.isAudioEnabled
@@ -52,7 +52,7 @@ export const RoomActions = () => {
               ? (
                 <div>
                   {haveNewMessages && (
-                    <div className="bg-red-500 rounded-full p-[5px] absolute"></div>
+                    <div className="bg-red-500 rounded-full p-[5px] absolute top-4"></div>
                   )}
                   <BiMessageDetail className={iconsStyle} />
                 </div>
