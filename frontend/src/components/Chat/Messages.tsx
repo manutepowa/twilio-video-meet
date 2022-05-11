@@ -1,6 +1,6 @@
+import { Message } from '@twilio/conversations'
 import clsx from 'clsx'
-import React, { useContext, useEffect, useRef } from 'react'
-import ChatContext from '../../context/ChatContext'
+import { useContext, useRef } from 'react'
 import MeetContext from '../../context/MeetContext'
 
 function formatDate (date: Date | null) {
@@ -14,27 +14,11 @@ function formatDate (date: Date | null) {
   return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
 }
 
-function useChatScroll<T> (dep: T): any {
-  const ref = useRef<HTMLDivElement | undefined>()
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.scrollTop = ref.current.scrollHeight
-      console.log({
-        scrollTop: ref.current.scrollTop,
-        scrollHeight: ref.current.scrollHeight
-      })
-    }
-  }, [dep])
-  return ref
-}
-
-export const Messages = () => {
-  const { messages } = useContext(ChatContext)
+export const Messages = ({ messages }: {messages: Message[] | undefined}) => {
   const { localParticipant } = useContext(MeetContext)
 
-  const ref = useChatScroll(messages)
   return (
-    <div className='' ref={ref}>
+    <div className=''>
         {messages?.map((message, idx) => {
           const date = formatDate(message?.dateCreated)
           const isLocalParticipant = message.author === localParticipant?.identity

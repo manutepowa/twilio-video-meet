@@ -30,6 +30,7 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
         conversation.off('messageAdded', handleMessageAdded)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversation])
 
   useEffect(() => {
