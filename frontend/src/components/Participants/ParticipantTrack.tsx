@@ -24,22 +24,15 @@ export const ParticipantTrack = ({ track, imDominantSpeaker, grid }: Props) => {
   }, [track])
 
   return (
-
-      // <video
-      //   className={`border-2 rounded-md w-full ${
-      //     imDominantSpeaker ? 'border-[#44c2fd]' : 'border-gray-800'
-      //   }` }
-      //   ref={ref}
-      // ></video>
       <video
-      className={clsx('rounded-md', {
+        className={clsx('rounded-md border-2', {
 
-        'h-auto w-full': grid === 2,
-        'h-1/2 ': grid <= 6 && grid > 2,
-        'h-1/3 ': grid > 6 && grid <= 9,
-        'h-1/4 ': grid > 9 && grid <= 12
+          'h-auto w-full': grid === 2,
+          'h-1/2 ': grid <= 6 && grid > 2,
+          'h-1/3 ': grid > 6 && grid <= 9,
+          'h-1/4 ': grid > 9 && grid <= 12
 
-      })}
+        }, imDominantSpeaker ? 'border-#44c2fd' : 'border-gray-800')}
         ref={ref}
       ></video>
 
