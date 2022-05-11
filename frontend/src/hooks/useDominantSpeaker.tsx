@@ -14,24 +14,24 @@ export const useDominantSpeaker = () => {
       const handleDominantSpeakerChanged = (
         newDominantSpeaker: RemoteParticipant
       ) => {
-        console.log(newDominantSpeaker?.identity)
+        console.log({ newDominant: newDominantSpeaker.identity })
         setDominantSpeaker(newDominantSpeaker)
       }
-      const handleParticipantDisconnected = (
-        participant: RemoteParticipant
-      ) => {
-        setDominantSpeaker((prevDominantSpeaker) => {
-          return prevDominantSpeaker === participant
-            ? null
-            : prevDominantSpeaker
-        })
-      }
+      // const handleParticipantDisconnected = (
+      //   participant: RemoteParticipant
+      // ) => {
+      //   setDominantSpeaker((prevDominantSpeaker) => {
+      //     return prevDominantSpeaker === participant
+      //       ? null
+      //       : prevDominantSpeaker
+      //   })
+      // }
 
       room.on('dominantSpeakerChanged', handleDominantSpeakerChanged)
-      room.on('participantDisconnected', handleParticipantDisconnected)
+      // room.on('participantDisconnected', handleParticipantDisconnected)
       return () => {
         room.off('dominantSpeakerChanged', handleDominantSpeakerChanged)
-        room.off('participantDisconnected', handleParticipantDisconnected)
+        // room.off('participantDisconnected', handleParticipantDisconnected)
       }
     }
   }, [room])

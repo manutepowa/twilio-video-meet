@@ -10,6 +10,7 @@ type Props = {
 
 export const ParticipantTrack = ({ track, imDominantSpeaker, grid }: Props) => {
   const ref = useRef<HTMLVideoElement>(null)
+  console.log({ imDominantSpeaker })
 
   useEffect(() => {
     const el = ref?.current

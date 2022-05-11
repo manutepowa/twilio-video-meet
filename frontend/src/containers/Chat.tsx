@@ -1,25 +1,22 @@
+import { Message } from '@twilio/conversations'
 import { useContext, useEffect, useRef } from 'react'
 import { Form } from '../components/Chat/Form'
 import { Messages } from '../components/Chat/Messages'
 import ChatContext from '../context/ChatContext'
 
-function useChatScroll<T> (dep: T): any {
+function useChatScroll (dep?: Message[], isChatOpen?: boolean): any {
   const ref = useRef<HTMLDivElement | undefined>()
   useEffect(() => {
-    if (ref.current) {
+    if (ref.current && isChatOpen) {
       ref.current.scrollTop = ref.current.scrollHeight
-      console.log({
-        scrollTop: ref.current.scrollTop,
-        scrollHeight: ref.current.scrollHeight
-      })
     }
-  }, [dep])
+  }, [dep, isChatOpen])
   return ref
 }
 
 export const Chat = () => {
   const { isChatOpen, messages } = useContext(ChatContext)
-  const ref = useChatScroll(messages)
+  const ref = useChatScroll(messages, isChatOpen)
 
   return (
     <>
