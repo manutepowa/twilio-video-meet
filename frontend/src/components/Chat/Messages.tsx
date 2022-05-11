@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import ChatContext from '../../context/ChatContext'
 import MeetContext from '../../context/MeetContext'
 
@@ -14,11 +14,15 @@ function formatDate (date: Date | null) {
   return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
 }
 
-function useChatScroll<T> (dep: T) {
-  const ref = useRef<HTMLDivElement>()
+function useChatScroll<T> (dep: T): any {
+  const ref = useRef<HTMLDivElement | undefined>()
   useEffect(() => {
     if (ref.current) {
       ref.current.scrollTop = ref.current.scrollHeight
+      console.log({
+        scrollTop: ref.current.scrollTop,
+        scrollHeight: ref.current.scrollHeight
+      })
     }
   }, [dep])
   return ref
@@ -27,11 +31,10 @@ function useChatScroll<T> (dep: T) {
 export const Messages = () => {
   const { messages } = useContext(ChatContext)
   const { localParticipant } = useContext(MeetContext)
-  console.log({ messages })
+
   const ref = useChatScroll(messages)
   return (
-    <div className='h-full'>
-      <div className=''>
+    <div className='h-full' ref={ref}>
         {messages?.map((message, idx) => {
           const date = formatDate(message?.dateCreated)
           const isLocalParticipant = message.author === localParticipant?.identity
@@ -59,6 +62,5 @@ export const Messages = () => {
           )
         })}
       </div>
-    </div>
   )
 }
