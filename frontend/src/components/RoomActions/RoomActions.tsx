@@ -16,7 +16,7 @@ const iconsStyle = 'text-white text-2xl'
 
 export const RoomActions = () => {
   const { room, localParticipant } = useContext(MeetContext)
-  const { setIsChatOpen, isChatOpen, haveNewMessages } = useContext(ChatContext)
+  const { setIsChatOpen, isChatOpen, haveNewMessages, setHaveNewMessages } = useContext(ChatContext)
   const { localAudio, localVideo } = useToggleActions(localParticipant)
 
   return (
@@ -57,7 +57,10 @@ export const RoomActions = () => {
         </div>
         <div className="action-buttons">
           <div className='p-0 m-0 tooltip'>
-          <button type="button" onClick={() => setIsChatOpen?.(!isChatOpen)}>
+          <button type="button" onClick={() => {
+            setIsChatOpen?.(!isChatOpen)
+            setHaveNewMessages?.(false)
+          }}>
             {!isChatOpen
               ? (
                 <div >

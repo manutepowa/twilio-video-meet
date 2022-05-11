@@ -14,7 +14,6 @@ export const useDominantSpeaker = () => {
       const handleDominantSpeakerChanged = (
         newDominantSpeaker: RemoteParticipant
       ) => {
-        console.log({ newDominant: newDominantSpeaker.identity })
         setDominantSpeaker(newDominantSpeaker)
       }
       // const handleParticipantDisconnected = (

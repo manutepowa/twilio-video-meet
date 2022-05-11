@@ -1,5 +1,5 @@
 import { Client, Conversation, Message } from '@twilio/conversations'
-import { createContext, ReactNode, useCallback, useEffect, useState } from 'react'
+import { createContext, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { IChatContext } from '../types'
 
 const ChatContext = createContext<IChatContext>({})
@@ -11,6 +11,7 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [conversation, setConversation] = useState<Conversation | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
   const [haveNewMessages, setHaveNewMessages] = useState<boolean>(false)
+  const refNotification = useRef<HTMLAudioElement>(null)
 
   const chatConnect = useCallback(async (token: string, id: string) => {
     console.log('connecting to chat...')
@@ -18,11 +19,17 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
     setClient(chatClient)
     setSid(id)
   }, [])
+
   useEffect(() => {
     if (conversation) {
       const handleMessageAdded = (message: Message) => {
         setMessages(oldMessages => [...oldMessages, message])
-        !isChatOpen && setHaveNewMessages(true)
+        // !isChatOpen && !haveNewMessages && refNotification.current && refNotification.current.play()
+        if (!isChatOpen && !haveNewMessages) {
+          console.log('new message')
+          refNotification.current && refNotification.current.play()
+          setHaveNewMessages(true)
+        }
       }
       conversation.getMessages().then(newMessages => setMessages(newMessages.items))
       conversation.on('messageAdded', handleMessageAdded)
@@ -31,7 +38,7 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [conversation])
+  }, [conversation, isChatOpen, haveNewMessages])
 
   useEffect(() => {
     if (client && sid) {
@@ -42,12 +49,6 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [client, sid])
 
-  useEffect(() => {
-    if (haveNewMessages && isChatOpen) {
-      setHaveNewMessages(false)
-    }
-  }, [isChatOpen, haveNewMessages])
-
   return (
     <ChatContext.Provider
       value={{
@@ -56,7 +57,9 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
         chatConnect,
         conversation,
         messages,
-        haveNewMessages
+        haveNewMessages,
+        refNotification,
+        setHaveNewMessages
       }}
     >
       {children}

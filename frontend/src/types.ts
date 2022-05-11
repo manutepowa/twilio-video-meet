@@ -16,6 +16,8 @@ export interface IChatContext {
   conversation?: Conversation | null
   messages?: Message[]
   haveNewMessages?: boolean
+  refNotification?: React.RefObject<HTMLAudioElement>
+  setHaveNewMessages?: Dispatch<SetStateAction<boolean>>
 }
 export interface IContext {
   nickname?: string;

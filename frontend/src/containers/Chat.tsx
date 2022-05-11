@@ -15,7 +15,7 @@ function useChatScroll (dep?: Message[], isChatOpen?: boolean): any {
 }
 
 export const Chat = () => {
-  const { isChatOpen, messages } = useContext(ChatContext)
+  const { isChatOpen, messages, refNotification } = useContext(ChatContext)
   const ref = useChatScroll(messages, isChatOpen)
 
   return (
@@ -33,6 +33,7 @@ export const Chat = () => {
           </div>
         </div>
       )}
+      <audio ref={refNotification} src="/notification.mp3"></audio>
     </>
   )
 }
