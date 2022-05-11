@@ -19,8 +19,6 @@ export const useMeet = () => {
     // eslint-disable-next-line
     const { token, conversation_sid } = await getMeetToken(nickname, roomName)
     const connection = await Video.connect(token, {
-      video: true,
-      audio: true,
       dominantSpeaker: true
     })
     setRoom(connection)
