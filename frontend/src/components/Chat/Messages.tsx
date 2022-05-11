@@ -34,7 +34,7 @@ export const Messages = () => {
 
   const ref = useChatScroll(messages)
   return (
-    <div className='h-full' ref={ref}>
+    <div className='' ref={ref}>
         {messages?.map((message, idx) => {
           const date = formatDate(message?.dateCreated)
           const isLocalParticipant = message.author === localParticipant?.identity
