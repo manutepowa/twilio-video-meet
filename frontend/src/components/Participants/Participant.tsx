@@ -65,12 +65,12 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
           <img className="rounded-md" src={avatarURL} alt="avatar" />
         </div>
       )}
-      <div className="absolute px-1 text-sm rounded-md bg-primary bg-opacity-80 bottom-1 left-1">
+        <div className="absolute px-2 py-1 text-sm rounded-md bg-[#6592fd] bg-opacity-80 bottom-2 left-2">
         {participant.identity}
         {isLocalParticipant && ' (me)'}
       </div>
       {!isAudioEnabled && (
-        <div className="absolute p-1 rounded-md bg-primary bg-opacity-80 bottom-1 right-1">
+          <div className="absolute px-2 py-1 rounded-md bg-[#6592fd] bg-opacity-80 bottom-2 right-2">
           <BiMicrophoneOff className="text-white" />
         </div>
       )}

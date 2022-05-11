@@ -32,7 +32,7 @@ export const ParticipantTrack = ({ track, imDominantSpeaker, grid }: Props) => {
           'h-1/3 ': grid > 6 && grid <= 9,
           'h-1/4 ': grid > 9 && grid <= 12
 
-        }, imDominantSpeaker ? 'border-#44c2fd' : 'border-gray-800')}
+        }, imDominantSpeaker ? 'border-[#44c2fd]' : 'border-gray-800')}
         ref={ref}
       ></video>
 
