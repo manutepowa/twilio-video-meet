@@ -37,7 +37,7 @@ export const NickForm: FC = () => {
             : (
             <button
               type="submit"
-              className="w-full py-2 my-4 rounded-sm bg-sky-500 hover:bg-sky-400"
+              className="w-full py-2 my-4 rounded-sm bg-[#343090] hover:bg-[#343098]"
             >
               Entrar a la sala
             </button>

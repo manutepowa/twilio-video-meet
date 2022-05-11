@@ -19,8 +19,6 @@ export const RoomActions = () => {
   const { setIsChatOpen, isChatOpen, haveNewMessages } = useContext(ChatContext)
   const { localAudio, localVideo } = useToggleActions(localParticipant)
 
-  console.log({ haveNewMessages })
-
   return (
     <div className="absolute bottom-0 transform -translate-x-1/2 -translate-y-1/2 left-1/2">
       <div className="flex gap-1 bg-black rounded-md">
