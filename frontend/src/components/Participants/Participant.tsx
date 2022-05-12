@@ -51,7 +51,7 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
 
     <div className={clsx('border-2 border-slate-400/20 rounded-md ', {
 
-      'h-screen w-full': grid === 1,
+      'h-screen w-full border-0': grid === 1,
       'w-1/2': grid === 2,
       'w-1/3': grid > 2,
       'w-1/4': grid > 6,
