@@ -23,7 +23,7 @@ export const RoomSettings = () => {
   return (
     <div className="">
       <div className="flex gap-1 bg-black rounded-md">
-        <div className="action-buttons">
+        <div className="m-0 action-buttons">
           <div className='p-0 m-0 tooltip'>
             <button type="button" onClick={toggleAudio}>
               {audioSetting
@@ -39,7 +39,7 @@ export const RoomSettings = () => {
           </div>
 
         </div>
-        <div className="action-buttons">
+        <div className="m-0 action-buttons">
           <div className='p-0 m-0 tooltip'>
           <button type="button" onClick={toggleVideo}>
             {videoSetting
