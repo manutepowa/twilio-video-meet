@@ -6,7 +6,7 @@ import { useParticipants } from '../../hooks/useParticipants'
 
 function Room () {
   const participants = useParticipants()
-  const { room } = useContext(MeetContext)
+  const { room, refAccessSound } = useContext(MeetContext)
   const localParticipant = room?.localParticipant
   const aux = participants.length + 1
   return (
@@ -30,6 +30,7 @@ function Room () {
           ))}
       </div>
       <RoomActions />
+      <audio ref={refAccessSound} src="/access_meet.mp3"></audio>
     </div>
   )
 }

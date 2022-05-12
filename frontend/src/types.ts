@@ -29,6 +29,7 @@ export interface IContext {
   loadingRoom?: boolean;
   setIsOnRoom?: Dispatch<SetStateAction<boolean>>;
   localParticipant?: LocalParticipant;
+  refAccessSound?: React.RefObject<HTMLAudioElement>
 }
 
 export type PublicationType = LocalTrackPublication | RemoteTrackPublication
