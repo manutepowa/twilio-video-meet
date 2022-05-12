@@ -2,6 +2,7 @@ import { FC, FormEvent, useContext } from 'react'
 import MeetContext from '../../context/MeetContext'
 import { RoomSettings } from '../RoomSettings'
 import { Pulsar } from '@uiball/loaders'
+import { VoiceDetector } from '../VoiceDetector'
 import { motion } from 'framer-motion'
 
 export const NickForm: FC = () => {
@@ -57,6 +58,7 @@ export const NickForm: FC = () => {
               )}
         </form>
       </div>
+      <VoiceDetector />
     </div>
   )
 }
