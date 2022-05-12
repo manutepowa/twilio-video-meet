@@ -8,6 +8,7 @@ import { ParticipantTrack } from './ParticipantTrack'
 import { BiMicrophoneOff } from 'react-icons/bi'
 import { useAvatar } from '../../hooks/useAvatar'
 import clsx from 'clsx'
+import { motion } from 'framer-motion'
 
 type Props = {
   participant: P,
@@ -50,17 +51,33 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
 
     <div className={clsx('border-2 border-slate-400/20 rounded-md ', {
 
+      'h-screen w-full': grid === 1,
       'w-1/2': grid === 2,
       'w-1/3': grid > 2,
       'w-1/4': grid > 6,
       'w-1/5': grid > 8,
       'w-1/6': grid > 12,
       'w-1/7': grid > 16
-      // 'w-1/8': grid > 24,
-      // 'w-1/9': grid > 28
 
     })}>
-      <div className='relative'>
+      <motion.div className='relative'
+        initial={{
+          opacity: 0,
+          scale: 0.8
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1
+        }}
+        exit={{
+          opacity: 0,
+          scale: 0.8
+        }}
+        transition={{
+          duration: 0.4,
+          ease: 'easeInOut'
+        }}
+      >
       <ParticipantTrack grid={grid} track={vTrack} imDominantSpeaker={imDominantSpeaker} />
       <ParticipantAudioTrack track={aTrack} />
       {!isVideoEnabled && (
@@ -77,7 +94,7 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
           <BiMicrophoneOff className="text-white" />
         </div>
       )}
-      </div>
+      </motion.div>
     </div>
   )
 }

@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -69,4 +74,46 @@ code {
   opacity: 1;
     transition: all 0.4s ease-in;
   
+}
+
+
+@font-face {
+  font-family: Capitana;
+  src: url("./fonts/CapitanaThin.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: Capitana;
+  src: url("./fonts/CapitanaLight.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Capitana;
+  src: url("./fonts/CapitanaRegular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Capitana;
+  src: url("./fonts/CapitanaMedium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Capitana;
+  src: url("./fonts/CapitanaSemibold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: Capitana;
+  src: url("./fonts/CapitanaBold.ttf");
+  font-weight: 700;
+}
+
+
+.fcapitana {
+  font-family: "Capitana", sans-serif;
 }

@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion'
 import { useContext } from 'react'
 import { Participant } from '../../components/Participants/Participant'
 import { RoomActions } from '../../components/RoomActions/RoomActions'
@@ -12,6 +13,7 @@ function Room () {
   return (
     <div className="w-full min-h-screen bg-repeat bg-stone-900/90">
       <div className="flex flex-wrap ">
+        <AnimatePresence>
         {localParticipant && (
           <Participant
             grid={aux}
@@ -28,6 +30,7 @@ function Room () {
               isLocalParticipant={false}
             />
           ))}
+          </AnimatePresence>
       </div>
       <RoomActions />
       <audio ref={refAccessSound} src="/access_meet.mp3"></audio>
