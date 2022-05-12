@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import getMeetToken from '../services/getToken'
 import * as Video from 'twilio-video'
 import ChatContext from '../context/ChatContext'
@@ -9,6 +9,8 @@ export const useMeet = () => {
   const [room, setRoom] = useState<Video.Room>()
   const [isOnRoom, setIsOnRoom] = useState<boolean>(false)
   const [loadingRoom, setLoadingRoom] = useState<boolean>(false)
+  const [audioSetting, setAudioSetting] = useState<boolean>(true)
+  const [videoSetting, setVideoSetting] = useState<boolean>(true)
   const [localParticipant, setLocalParticipant] =
     useState<Video.LocalParticipant>()
 
@@ -29,7 +31,22 @@ export const useMeet = () => {
     window.addEventListener('beforeunload', () => {
       connection.disconnect()
     })
-  }, [nickname, roomName, chatConnect])
+  }, [nickname, roomName, chatConnect, audioSetting, videoSetting])
+
+  useEffect(() => {
+    if (isOnRoom) {
+      localParticipant?.audioTracks.forEach(
+        ({ track }: { track: Video.LocalAudioTrack }) => {
+          audioSetting ? track.enable() : track.disable()
+        }
+      )
+      localParticipant?.videoTracks.forEach(
+        ({ track }: { track: Video.LocalVideoTrack }) => {
+          audioSetting ? track.enable() : track.disable()
+        }
+      )
+    }
+  }, [localParticipant])
 
   return {
     nickname,
@@ -40,6 +57,10 @@ export const useMeet = () => {
     room,
     loadingRoom,
     setIsOnRoom,
-    localParticipant
+    localParticipant,
+    audioSetting,
+    setAudioSetting,
+    videoSetting,
+    setVideoSetting
   }
 }

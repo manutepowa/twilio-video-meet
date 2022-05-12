@@ -1,5 +1,6 @@
 import { FC, FormEvent, useContext } from 'react'
 import MeetContext from '../../context/MeetContext'
+import { RoomSettings } from '../RoomSettings'
 import { Pulsar } from '@uiball/loaders'
 
 export const NickForm: FC = () => {
@@ -38,12 +39,15 @@ export const NickForm: FC = () => {
             <Pulsar size={40} speed={1.75} color="#fff" />
               )
             : (
-            <button
-              type="submit"
-              className="w-full py-2 my-4 font-semibold rounded-sm bg-sky-500 hover:bg-sky-400"
-            >
-              Entrar a la sala
-            </button>
+            <div className="w-full">
+              <button
+                type="submit"
+                className="w-full py-2 my-4 font-semibold rounded-sm bg-sky-500 hover:bg-sky-400"
+                >
+                Entrar a la sala
+              </button>
+              <RoomSettings />
+            </div>
               )}
         </form>
       </div>
