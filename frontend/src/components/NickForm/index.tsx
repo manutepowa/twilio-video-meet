@@ -1,5 +1,6 @@
 import { FC, FormEvent, useContext } from 'react'
 import MeetContext from '../../context/MeetContext'
+import { RoomSettings } from '../RoomSettings'
 import { Pulsar } from '@uiball/loaders'
 import { motion } from 'framer-motion'
 
