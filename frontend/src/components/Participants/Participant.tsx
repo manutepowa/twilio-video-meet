@@ -54,7 +54,10 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
       'w-1/3': grid > 2,
       'w-1/4': grid > 6,
       'w-1/5': grid > 8,
-      'w-1/6': grid > 12
+      'w-1/6': grid > 12,
+      'w-1/7': grid > 16
+      // 'w-1/8': grid > 24,
+      // 'w-1/9': grid > 28
 
     })}>
       <div className='relative'>

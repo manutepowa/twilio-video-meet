@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { RemoteParticipant } from 'twilio-video'
 import { Participant } from '../../components/Participants/Participant'
 import { RoomActions } from '../../components/RoomActions/RoomActions'
 import MeetContext from '../../context/MeetContext'
@@ -9,9 +8,7 @@ function Room () {
   const participants = useParticipants()
   const { room } = useContext(MeetContext)
   const localParticipant = room?.localParticipant
-  const [numparticipants, setNumparticipants] = participants
   const aux = participants.length + 1
-  console.log(aux)
   return (
     <div className="w-full min-h-screen bg-repeat bg-stone-900/90">
       <div className="flex flex-wrap ">
