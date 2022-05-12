@@ -40,15 +40,20 @@ export const NickForm: FC = () => {
             <Pulsar size={40} speed={1.75} color="#fff" />
               )
             : (
+              <div className="items-center justify-center w-full h-full">
+
               <motion.button
                 transition={{
                   duration: 0.5
                 }}
                 type="submit"
-                className="items-center justify-center w-full h-full px-4 py-2 font-semibold tracking-wide text-white bg-indigo-500 rounded hover:bg-indigo-700 fcapitana"
-              >
+                className="items-center justify-center w-full px-4 py-2 font-semibold tracking-wide text-white bg-indigo-500 rounded hover:bg-indigo-700 fcapitana"
+                >
                 Entrar en la sala
               </motion.button>
+
+              <RoomSettings />
+                </div>
               )}
         </form>
       </div>
