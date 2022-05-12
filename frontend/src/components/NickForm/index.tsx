@@ -21,12 +21,12 @@ export const NickForm: FC = () => {
   return (
     <div className="flex flex-col h-screen bg-primary min-w-[400px]">
       <div className="">
-        <a href='/' className='flex flex-row justify-center w-full '><img src='/logom3-positivo.svg' alt='logo' className="w-1/2 mt-8 " /></a>
+        <a href='/' className='flex flex-row justify-start w-full '><img src='/logom3-positivo.svg' alt='logo' className="w-1/3 mx-8 mt-8 " /></a>
         </div>
       <div className="flex flex-col content-center my-auto justify-items-center">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center py-8 mx-8"
+          className="flex flex-col items-center py-8 mx-8 space-y-8"
         >
           <label className="text-2xl font-bold tracking-wide fcapitana">Introduzca su nickname</label>
           <input
@@ -41,7 +41,7 @@ export const NickForm: FC = () => {
             <Pulsar size={40} speed={1.75} color="#fff" />
               )
             : (
-              <div className="items-center justify-center w-full h-full">
+              <div className="flex flex-col items-center justify-end w-full h-full">
 
               <motion.button
                 transition={{
@@ -52,13 +52,15 @@ export const NickForm: FC = () => {
                 >
                 Entrar en la sala
               </motion.button>
-
+                <div className='flex flex-col mt-24 space-y-4'>
               <RoomSettings />
+                <VoiceDetector />
+                </div>
                 </div>
               )}
         </form>
       </div>
-      <VoiceDetector />
+
     </div>
   )
 }

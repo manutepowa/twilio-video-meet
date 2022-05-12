@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
-
+import { motion } from 'framer-motion'
 export const VoiceDetector = () => {
+  const spring = {
+    type: 'spring',
+    damping: 10,
+    stiffness: 100
+  }
   const [volume, setVolume] = useState(0)
   useEffect(() => {
     navigator.mediaDevices
@@ -29,11 +34,12 @@ export const VoiceDetector = () => {
       })
   }, [])
   return (
-    <div>
-      {/* <progress id="file" max="100" value={volume}></progress> */}
-      <div className="w-12 bg-gray-200 rounded-full h-1.5">
-        <div className="bg-green-500 h-1.5 rounded-full max-w-full" style={{ width: volume + '%' }}></div>
+
+      <div className="flex flex-col w-full bg-gray-200 rounded-full h-1.5">
+
+      <motion.div transition={spring} className="bg-green-500 h-1.5 rounded-full max-w-full" style={{ width: volume + '%' }}></motion.div>
+
       </div>
-    </div>
+
   )
 }
