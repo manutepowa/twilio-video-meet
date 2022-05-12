@@ -1,59 +1,53 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import {
   LocalAudioTrack,
   LocalParticipant,
   LocalVideoTrack
 } from 'twilio-video'
+import MeetContext from '../context/MeetContext'
 
 type Props = LocalParticipant | undefined
 
 export const useToggleActions = (localParticipant: Props) => {
   const [localAudioTrack, setLocalAudioTrack] = useState<LocalAudioTrack>()
   const [localVideoTrack, setLocalVideoTrack] = useState<LocalVideoTrack>()
-  const [isAudioEnabled, setIsAudioEnabled] = useState(
-    localAudioTrack?.isEnabled
-  )
-  const [isVideoEnabled, setIsVideoEnabled] = useState(
-    localVideoTrack?.isEnabled
-  )
+  const { audioSetting, setAudioSetting, videoSetting, setVideoSetting } = useContext(MeetContext)
 
   const muteAudio = () => {
     localAudioTrack?.isEnabled
       ? localAudioTrack?.disable()
       : localAudioTrack?.enable()
-    setIsAudioEnabled(localAudioTrack?.isEnabled)
+    setAudioSetting?.(!!localAudioTrack?.isEnabled)
   }
   const disableVideo = () => {
     localVideoTrack?.isEnabled
       ? localVideoTrack?.disable()
       : localVideoTrack?.enable()
-    setIsVideoEnabled(localVideoTrack?.isEnabled)
+    setVideoSetting?.(!!localVideoTrack?.isEnabled)
   }
 
   useEffect(() => {
     localParticipant?.audioTracks.forEach(
       ({ track }: { track: LocalAudioTrack }) => {
         setLocalAudioTrack(track)
-        setIsAudioEnabled(track.isEnabled)
       }
     )
     // each videorack is a track
     localParticipant?.videoTracks.forEach(
       ({ track }: { track: LocalVideoTrack }) => {
         setLocalVideoTrack(track)
-        setIsVideoEnabled(track.isEnabled)
       }
     )
-  }, [localParticipant?.audioTracks, localParticipant?.videoTracks])
+  }, [localParticipant])
 
   return {
     localAudio: {
       muteAudio,
-      isAudioEnabled
+      audioSetting
     },
     localVideo: {
       disableVideo,
-      isVideoEnabled
+      videoSetting
     }
   }
 }

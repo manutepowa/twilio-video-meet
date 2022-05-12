@@ -29,6 +29,10 @@ export interface IContext {
   loadingRoom?: boolean;
   setIsOnRoom?: Dispatch<SetStateAction<boolean>>;
   localParticipant?: LocalParticipant;
+  audioSetting?: boolean;
+  setAudioSetting?: Dispatch<SetStateAction<boolean>>;
+  videoSetting?: boolean;
+  setVideoSetting?: Dispatch<SetStateAction<boolean>>;
   refAccessSound?: React.RefObject<HTMLAudioElement>
 }
 

@@ -27,6 +27,7 @@ export const ParticipantTrack = ({ track, imDominantSpeaker, grid }: Props) => {
       <video
         className={clsx('rounded-md border-2', {
 
+          'h-screen w-auto my-0 mx-auto': grid === 1,
           'h-auto w-full': grid === 2,
           'h-1/2 ': grid <= 6 && grid > 2,
           'h-1/3 ': grid > 6 && grid <= 9
