@@ -2,6 +2,7 @@ import { FC, FormEvent, useContext } from 'react'
 import MeetContext from '../../context/MeetContext'
 import { RoomSettings } from '../RoomSettings'
 import { Pulsar } from '@uiball/loaders'
+import { motion } from 'framer-motion'
 
 export const NickForm: FC = () => {
   const { nickname, setNickname, enterToRoom, loadingRoom } =
@@ -26,7 +27,7 @@ export const NickForm: FC = () => {
           onSubmit={handleSubmit}
           className="flex flex-col items-center py-8 mx-8"
         >
-          <label className="text-2xl font-bold">Introduzca su nickname</label>
+          <label className="text-2xl font-bold tracking-wide fcapitana">Introduzca su nickname</label>
           <input
             type="text"
             name="nickname"
@@ -39,15 +40,15 @@ export const NickForm: FC = () => {
             <Pulsar size={40} speed={1.75} color="#fff" />
               )
             : (
-            <div className="w-full">
-              <button
+              <motion.button
+                transition={{
+                  duration: 0.5
+                }}
                 type="submit"
-                className="w-full py-2 my-4 font-semibold rounded-sm bg-sky-500 hover:bg-sky-400"
-                >
-                Entrar a la sala
-              </button>
-              <RoomSettings />
-            </div>
+                className="items-center justify-center w-full h-full px-4 py-2 font-semibold tracking-wide text-white bg-indigo-500 rounded hover:bg-indigo-700 fcapitana"
+              >
+                Entrar en la sala
+              </motion.button>
               )}
         </form>
       </div>

@@ -33,6 +33,7 @@ export interface IContext {
   setAudioSetting?: Dispatch<SetStateAction<boolean>>;
   videoSetting?: boolean;
   setVideoSetting?: Dispatch<SetStateAction<boolean>>;
+  refAccessSound?: React.RefObject<HTMLAudioElement>
 }
 
 export type PublicationType = LocalTrackPublication | RemoteTrackPublication
