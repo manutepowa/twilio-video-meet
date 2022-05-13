@@ -9,16 +9,17 @@ export const useAvatar = (participant: Participant) => {
   // eslint-disable-next-line
   const [username, setUsername] = useState(participant.identity)
   const [url, setUrl] = useState('')
+  const [fondo, setFondo] = useState(setBg())
   useEffect(() => {
     if (username) {
-      const bg = setBg()
       setUrl(
-        `https://ui-avatars.com/api/?name=${username}&background=${bg}&color=fff&size=128`
+        `https://ui-avatars.com/api/?name=${username}&background=${fondo}&color=fff&size=128`
       )
     }
-  }, [username])
+  }, [username, fondo])
 
   return {
-    url
+    url,
+    fondo
   }
 }
