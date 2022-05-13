@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import MeetContext from '../context/MeetContext'
+import clsx from 'clsx'
 export const VoiceDetector = () => {
+  const { audioSetting } = useContext(MeetContext)
   const spring = {
     type: 'spring',
     damping: 10,
@@ -37,7 +40,11 @@ export const VoiceDetector = () => {
 
       <div className="flex flex-col w-full bg-gray-200 rounded-full h-1.5">
 
-      <motion.div transition={spring} className="bg-green-500 h-1.5 rounded-full max-w-full" style={{ width: volume + '%' }}></motion.div>
+      <motion.div
+        transition={spring}
+        className={clsx('h-1.5 rounded-full max-w-full', audioSetting ? 'bg-green-500' : 'bg-gray-500')}
+        style={{ width: audioSetting ? volume + '%' : '100%' }}
+      ></motion.div>
 
       </div>
 
