@@ -33,7 +33,7 @@ const useTrack = (publication: LocalTrackPublication | RemoteTrackPublication | 
 
 export const Participant = ({ participant, isLocalParticipant, grid }: Props) => {
   const publication = usePublication(participant)
-  const { url: avatarURL } = useAvatar(participant)
+  const { url: avatarURL, fondo } = useAvatar(participant)
   const { identity } = useDominantSpeaker()
 
   const imDominantSpeaker = identity === participant.identity
@@ -46,7 +46,8 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
 
   const isAudioEnabled = useIsTrackEnabled(aTrack)
   const isVideoEnabled = useIsTrackEnabled(vTrack)
-
+  const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
+  console.log(fondo)
   return (
 
     <div className={clsx('border-2 border-slate-400/20 rounded-md ', {
@@ -85,15 +86,16 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
           <img className="rounded-md" src={avatarURL} alt="avatar" />
         </div>
       )}
-        <div className="absolute px-2 py-1 text-sm rounded-md bg-[#6592fd] bg-opacity-80 bottom-2 left-2">
+        <div className="absolute px-2 py-1 text-sm rounded-md bg-opacity-80 bottom-2 left-2" style={{ backgroundColor: '#' + fondo }}>
         {participant.identity}
         {isLocalParticipant && ' (me)'}
       </div>
-      {!isAudioEnabled && (
-          <div className="absolute px-2 py-1 rounded-md bg-[#6592fd] bg-opacity-80 bottom-2 right-2">
-          <BiMicrophoneOff className="text-white" />
-        </div>
-      )}
+
+        {!isAudioEnabled && (
+          <div className="absolute px-2 py-1 rounded-md bg-[#ca2828] bg-opacity-80 bottom-2 right-2">
+            <BiMicrophoneOff className="text-white" />
+          </div>
+        )}
       </motion.div>
     </div>
   )
