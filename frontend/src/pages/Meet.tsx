@@ -26,7 +26,6 @@ function Meet () {
         ? (
         <div className="flex flex-auto">
           <NickForm />
-          <UserVideo />
               <div className='w-1/2 p-5 my-16 space-y-2 rounded-xl'>
                 <h1 className=' shadow-xl backdrop-filter backdrop-blur-md mt-3 text-2xl text-[#343090] bg-indigo-100/60 rounded-lg px-6 py-4 font-bold fcapitana tracking-wide'>Bienvenido a la sala:<br /><p className='text-4xl lowercase'>{roomName}</p></h1>
                 {/* <div className=' shadow-xl backdrop-filter backdrop-blur-md mt-3 text-2xl text-[#343090] bg-indigo-100/60 rounded-lg px-6 py-4 font-bold'>dafasdf</div> */}

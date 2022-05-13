@@ -4,6 +4,7 @@ import { RoomSettings } from '../RoomSettings'
 import { Pulsar } from '@uiball/loaders'
 import { VoiceDetector } from '../VoiceDetector'
 import { motion } from 'framer-motion'
+import UserVideo from '../UserVideo'
 
 export const NickForm: FC = () => {
   const { nickname, setNickname, enterToRoom, loadingRoom } =
@@ -52,9 +53,10 @@ export const NickForm: FC = () => {
                 >
                 Entrar en la sala
               </motion.button>
-                <div className='flex flex-col mt-24 space-y-4'>
-              <RoomSettings />
-                <VoiceDetector />
+                <UserVideo />
+                <div className='flex flex-col mt-12 space-y-4'>
+                  <RoomSettings />
+                  <VoiceDetector />
                 </div>
                 </div>
               )}

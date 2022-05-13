@@ -1,21 +1,35 @@
-import { useContext, useEffect, useRef } from 'react'
-import { createLocalVideoTrack, LocalTrack } from 'twilio-video'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { createLocalVideoTrack, LocalTrack, LocalVideoTrack } from 'twilio-video'
+import MeetContext from '../../context/MeetContext'
 
 function UserVideo () {
+  const { videoSetting } = useContext(MeetContext)
   const ref = useRef<HTMLDivElement>(null)
+  const [trackElement, setTrackElement] = useState<LocalVideoTrack>()
 
   useEffect(() => {
     const addLocalTrack = async () => {
       const track: LocalTrack = await createLocalVideoTrack()
+      setTrackElement(track)
       ref.current && ref.current.appendChild(track.attach())
     }
+
     if (ref?.current !== null) {
-      // addLocalTrack()
+      addLocalTrack()
     }
   }, [])
+
+  useEffect(() => {
+    if (videoSetting) {
+      trackElement?.enable(true)
+    }
+    if (!videoSetting) {
+      trackElement?.enable(false)
+    }
+  }, [videoSetting, trackElement])
   return (
-    <div className="flex flex-col !h-screen !w-full">
-      <div id="local-video" ref={ref}></div>
+    <div className="flex max-w-xs mt-12">
+      <div ref={ref}></div>
     </div>
   )
 }
