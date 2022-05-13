@@ -24,9 +24,10 @@ function Meet () {
       <div className='' >
       {!isOnRoom
         ? (
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-col justify-between overflow-x-hidden md:flex-row">
+
           <NickForm />
-              <div className='w-1/3 p-5 my-16 space-y-2 rounded-xl'>
+              <div className='hidden w-full p-5 my-16 space-y-2 md:block md:w-1/3 rounded-xl'>
                 <h1 className='shadow-xl backdrop-filter backdrop-blur-md text-2xl text-[#343090] bg-indigo-100/60 rounded-lg px-6 py-4 font-bold fcapitana tracking-wide'>Bienvenido a la sala:<br /><p className='text-4xl lowercase'>{roomName}</p></h1>
                 {/* <div className=' shadow-xl backdrop-filter backdrop-blur-md mt-3 text-2xl text-[#343090] bg-indigo-100/60 rounded-lg px-6 py-4 font-bold'>dafasdf</div> */}
               </div>

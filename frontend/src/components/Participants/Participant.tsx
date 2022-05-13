@@ -53,12 +53,12 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
     <div className={clsx('border-2 border-slate-400/20 rounded-md ', {
 
       'h-screen w-full border-0': grid === 1,
-      'w-1/2': grid === 2,
-      'w-1/3': grid > 2,
-      'w-1/4': grid > 6,
-      'w-1/5': grid > 8,
-      'w-1/6': grid > 12,
-      'w-1/7': grid > 16
+      'md:w-1/2': grid === 2,
+      'md:w-1/3 w-1/2': grid > 2,
+      'md:w-1/4': grid > 6,
+      'md:w-1/5  w-1/3': grid > 8,
+      'md:w-1/6': grid > 12,
+      'md:w-1/7': grid > 16
 
     })}>
       <motion.div className='relative'
@@ -86,7 +86,7 @@ export const Participant = ({ participant, isLocalParticipant, grid }: Props) =>
           <img className="rounded-md" src={avatarURL} alt="avatar" />
         </div>
       )}
-        <div className="absolute px-2 py-1 text-sm rounded-md bg-opacity-80 bottom-2 left-2" style={{ backgroundColor: '#' + fondo }}>
+        <div className="absolute px-2 py-1 text-xs rounded-md md:text-sm bg-opacity-80 bottom-2 left-2" style={{ backgroundColor: '#' + fondo }}>
         {participant.identity}
         {isLocalParticipant && ' (me)'}
       </div>

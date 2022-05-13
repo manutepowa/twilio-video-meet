@@ -28,7 +28,7 @@ function UserVideo () {
     }
   }, [videoSetting, trackElement])
   return (
-    <div className="flex max-w-xs mt-12">
+    <div className="flex max-w-sm md:mt-12">
       <div ref={ref}></div>
     </div>
   )

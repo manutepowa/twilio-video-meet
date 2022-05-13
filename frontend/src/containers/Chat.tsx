@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef } from 'react'
 import { Form } from '../components/Chat/Form'
 import { Messages } from '../components/Chat/Messages'
 import ChatContext from '../context/ChatContext'
+import { AnimatePresence, motion } from 'framer-motion'
 
 function useChatScroll (dep?: Message[], isChatOpen?: boolean): any {
   const ref = useRef<HTMLDivElement | undefined>()
@@ -20,8 +21,24 @@ export const Chat = () => {
 
   return (
     <>
+
       {isChatOpen && (
-        <div className="min-w-[393px] text-[#1c194d] bg-slate-900/70 flex flex-col items-center gap-2 ">
+        <motion.div className="w-full md:w-auto text-[#1c194d] bg-slate-900/70 flex flex-col items-center gap-2 "
+          initial={{
+            width: 0
+          }}
+          animate={{
+            width: 504
+          }}
+          exit={{
+            width: 0
+
+          }}
+          transition={{
+            duration: 0.4,
+            ease: 'easeInOut'
+          }}
+        >
           {/* <h1 className="w-full mt-2 py-2 pl-3 font-black text-[#026897] rounded-md bg-slate-50 ">
             CHAT
           </h1> */}
@@ -31,9 +48,10 @@ export const Chat = () => {
           <div className="fixed text-center rounded-md bottom-0 w-[375px] right-[18px] ">
             <Form />
           </div>
-        </div>
+        </motion.div>
       )}
       <audio ref={refNotification} src="/notification.mp3"></audio>
+
     </>
   )
 }
