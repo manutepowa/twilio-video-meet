@@ -31,7 +31,7 @@ export const NickForm: FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-primary min-w-[400px]">
+    <div className="flex flex-col h-screen bg-[#343090] min-w-[400px]">
       <div className="">
         <a href='/' className='flex flex-row justify-start w-full '><img src='/logom3-positivo.svg' alt='logo' className="w-1/3 mx-6 mt-8 " /></a>
         </div>
