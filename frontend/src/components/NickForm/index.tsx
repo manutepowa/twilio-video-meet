@@ -24,11 +24,17 @@ export const NickForm: FC = () => {
       <div className="">
         <a href='/' className='flex flex-row justify-start w-full '><img src='/logom3-positivo.svg' alt='logo' className="w-1/3 mx-8 mt-8 " /></a>
         </div>
-      <div className="flex flex-col content-center my-auto justify-items-center">
+      <div className="flex flex-col content-center justify-center my-auto">
+
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center py-8 mx-8 space-y-8"
         >
+          <UserVideo />
+          <div className='flex flex-col mt-12 space-y-4'>
+            <RoomSettings />
+            <VoiceDetector />
+          </div>
           <label className="text-2xl font-bold tracking-wide fcapitana">Introduzca su nickname</label>
           <input
             type="text"
@@ -53,11 +59,7 @@ export const NickForm: FC = () => {
                 >
                 Entrar en la sala
               </motion.button>
-                <UserVideo />
-                <div className='flex flex-col mt-12 space-y-4'>
-                  <RoomSettings />
-                  <VoiceDetector />
-                </div>
+
                 </div>
               )}
         </form>
