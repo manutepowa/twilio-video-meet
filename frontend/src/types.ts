@@ -1,6 +1,7 @@
 import { Conversation, Message } from '@twilio/conversations'
 import { Dispatch, SetStateAction } from 'react'
 import {
+  LocalAudioTrack,
   LocalParticipant,
   LocalTrackPublication,
   LocalVideoTrack,
@@ -33,7 +34,9 @@ export interface IContext {
   setAudioSetting?: Dispatch<SetStateAction<boolean>>;
   videoSetting?: boolean;
   setVideoSetting?: Dispatch<SetStateAction<boolean>>;
-  refAccessSound?: React.RefObject<HTMLAudioElement>
+  refAccessSound?: React.RefObject<HTMLAudioElement>;
+  setVideoDevice?: Dispatch<SetStateAction<LocalVideoTrack | undefined>>;
+  setAudioDevice?: Dispatch<SetStateAction<LocalAudioTrack | undefined>>;
 }
 
 export type PublicationType = LocalTrackPublication | RemoteTrackPublication

@@ -11,6 +11,8 @@ export const useMeet = () => {
   const [loadingRoom, setLoadingRoom] = useState<boolean>(false)
   const [audioSetting, setAudioSetting] = useState<boolean>(true)
   const [videoSetting, setVideoSetting] = useState<boolean>(true)
+  const [videoDevice, setVideoDevice] = useState<Video.LocalVideoTrack | undefined>()
+  const [audioDevice, setAudioDevice] = useState<Video.LocalAudioTrack | undefined>()
   const [localParticipant, setLocalParticipant] = useState<Video.LocalParticipant>()
   const refAccessSound = useRef<HTMLAudioElement>(null)
 
@@ -22,6 +24,8 @@ export const useMeet = () => {
     const { token, conversation_sid } = await getMeetToken(nickname, roomName)
     const connection = await Video.connect(token, {
       dominantSpeaker: true
+      // video: videoDevice || false,
+      // audio: audioDevice || false
     })
     setRoom(connection)
     setLocalParticipant(connection.localParticipant)
@@ -68,6 +72,8 @@ export const useMeet = () => {
     setAudioSetting,
     videoSetting,
     setVideoSetting,
-    refAccessSound
+    refAccessSound,
+    setVideoDevice,
+    setAudioDevice
   }
 }

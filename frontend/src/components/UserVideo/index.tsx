@@ -20,12 +20,7 @@ function UserVideo () {
   }, [])
 
   useEffect(() => {
-    if (videoSetting) {
-      trackElement?.enable(true)
-    }
-    if (!videoSetting) {
-      trackElement?.enable(false)
-    }
+    trackElement?.enable(!!videoSetting)
   }, [videoSetting, trackElement])
   return (
     <div className="flex max-w-sm md:mt-12">
