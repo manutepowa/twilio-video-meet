@@ -31,7 +31,7 @@ export const useMeet = () => {
     window.addEventListener('beforeunload', () => {
       connection.disconnect()
     })
-  }, [nickname, roomName, chatConnect, audioSetting, videoSetting])
+  }, [nickname, roomName, chatConnect])
 
   useEffect(() => {
     if (isOnRoom) {
@@ -42,11 +42,11 @@ export const useMeet = () => {
       )
       localParticipant?.videoTracks.forEach(
         ({ track }: { track: Video.LocalVideoTrack }) => {
-          audioSetting ? track.enable() : track.disable()
+          videoSetting ? track.enable() : track.disable()
         }
       )
     }
-  }, [localParticipant])
+  }, [localParticipant, isOnRoom, audioSetting, videoSetting])
 
   useEffect(() => {
     if (isOnRoom) {
